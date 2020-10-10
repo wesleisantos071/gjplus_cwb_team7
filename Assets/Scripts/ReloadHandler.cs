@@ -7,4 +7,8 @@ public class ReloadHandler : MonoBehaviour {
     public void OnClick() {
         SceneManager.LoadScene(0);
     }
+
+    public void ReloadSandbox() {
+        SceneManager.LoadScene(1);
+    }
 }
