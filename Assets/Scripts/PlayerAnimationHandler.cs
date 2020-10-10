@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerAnimationHandler : MonoBehaviour {
     public Material ashMaterial;
 
-
     void Start() {
         PlayerCollisionHandler.instance.onHitTree += OnHitTree;
         PlayerCollisionHandler.instance.onHitFire += OnHitFire;
