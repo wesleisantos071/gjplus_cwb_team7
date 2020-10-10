@@ -38,20 +38,37 @@ public class PlayerMovementHandler : MonoBehaviour {
     }
 
     private void Move() {
-        if (currentDirection == direction.TO_LEFT && transform.position.x > leftX
-            || currentDirection == direction.RIGHT_TO_MIDDLE && transform.position.x > middleX) {
-            Vector3 destinationPos = transform.position;
-            destinationPos.x = destinationPos.x - (jumpSpeed * Time.deltaTime);
-            transform.position = destinationPos;
-        } else if (currentDirection == direction.TO_RIGHT && transform.position.x < rightX
-            || currentDirection == direction.LEFT_TO_MIDDLE && transform.position.x < middleX) {
-            Vector3 destinationPos = transform.position;
-            destinationPos.x = destinationPos.x + (jumpSpeed * Time.deltaTime);
-            transform.position = destinationPos;
-        } else {
-            currentDirection = direction.NONE;
+        Vector3 destinationPos = transform.position;
+        if (currentDirection == direction.TO_LEFT) {
+            if (transform.position.x > leftX) {
+                destinationPos.x = destinationPos.x - (jumpSpeed * Time.deltaTime);
+            } else {
+                destinationPos.x = leftX;
+                currentDirection = direction.NONE;
+            }
+        } else if (currentDirection == direction.RIGHT_TO_MIDDLE) {
+            if (transform.position.x > middleX) {
+                destinationPos.x = destinationPos.x - (jumpSpeed * Time.deltaTime);
+            } else {
+                destinationPos.x = middleX;
+                currentDirection = direction.NONE;
+            }
+        } else if (currentDirection == direction.LEFT_TO_MIDDLE) {
+            if (transform.position.x < middleX) {
+                destinationPos.x = destinationPos.x + (jumpSpeed * Time.deltaTime);
+            } else {
+                destinationPos.x = middleX;
+                currentDirection = direction.NONE;
+            }
+        } else if (currentDirection == direction.TO_RIGHT) {
+            if (transform.position.x < rightX) {
+                destinationPos.x = destinationPos.x + (jumpSpeed * Time.deltaTime);
+            } else {
+                destinationPos.x = rightX;
+                currentDirection = direction.NONE;
+            }
         }
-        Debug.Log("moving to:" + currentDirection);
+        transform.position = destinationPos;
     }
 
     private void SetDestination(float h) {

@@ -422,7 +422,7 @@ MonoBehaviour:
   middleX: 0
   rightX: 1.8
   smoothSpeed: 0.3
-  jumpSpeed: 20
+  jumpSpeed: 30
 --- !u!54 &2096665402
 Rigidbody:
   m_ObjectHideFlags: 0
