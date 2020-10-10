@@ -30,7 +30,7 @@ public class PlayerParticleHandler : MonoBehaviour {
     }
 
     private void OnParticleCollision(GameObject other) {
-        Instantiate(smoke, other.transform.position, Quaternion.identity, null);
+
     }
 
 }
