@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3343788164168448590}
   - component: {fileID: 6159485416107581961}
   - component: {fileID: 1194470585560284413}
-  - component: {fileID: 4655428761789325115}
   m_Layer: 0
   m_Name: water_pool (2)
   m_TagString: Untagged
@@ -80,19 +79,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &4655428761789325115
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1093088233501604928}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1113406050652316456
 GameObject:
   m_ObjectHideFlags: 0
@@ -181,7 +167,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1113406050652316456}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -197,7 +183,6 @@ GameObject:
   - component: {fileID: 5234391080751426474}
   - component: {fileID: 1012622686068348937}
   - component: {fileID: 3207154214518838213}
-  - component: {fileID: 8273848148562511886}
   m_Layer: 0
   m_Name: water_pool (4)
   m_TagString: Untagged
@@ -266,19 +251,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &8273848148562511886
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1399852157663275366}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2012105894706915058
 GameObject:
   m_ObjectHideFlags: 0
@@ -290,7 +262,6 @@ GameObject:
   - component: {fileID: 812668876814370653}
   - component: {fileID: 5935916887361977981}
   - component: {fileID: 4428937274669249952}
-  - component: {fileID: 825299774090808000}
   m_Layer: 0
   m_Name: water_pool (3)
   m_TagString: Untagged
@@ -359,19 +330,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &825299774090808000
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2012105894706915058}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4758202207114700916
 GameObject:
   m_ObjectHideFlags: 0
@@ -383,7 +341,6 @@ GameObject:
   - component: {fileID: 5129200094803157422}
   - component: {fileID: 474939680126928177}
   - component: {fileID: 6344279832754510682}
-  - component: {fileID: 5130269088737945812}
   m_Layer: 0
   m_Name: water_pool (1)
   m_TagString: Untagged
@@ -452,19 +409,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &5130269088737945812
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4758202207114700916}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5829874952395150659
 GameObject:
   m_ObjectHideFlags: 0
@@ -476,7 +420,6 @@ GameObject:
   - component: {fileID: 8082000307593034118}
   - component: {fileID: 5739029697707260512}
   - component: {fileID: 5733362001533701152}
-  - component: {fileID: 8712445541031573320}
   m_Layer: 0
   m_Name: water_pool (5)
   m_TagString: Untagged
@@ -545,19 +488,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &8712445541031573320
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5829874952395150659}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5866343165045047214
 GameObject:
   m_ObjectHideFlags: 0
