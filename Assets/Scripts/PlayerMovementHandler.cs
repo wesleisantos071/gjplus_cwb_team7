@@ -63,6 +63,7 @@ public class PlayerMovementHandler : MonoBehaviour {
 
     private void MoveHorizontal() {
         Vector3 destinationPos = transform.position;
+        Debug.Log(currentDirection + "-" + destinationPos.x);
         if (currentDirection == direction.TO_LEFT) {
             if (transform.position.x > leftX) {
                 destinationPos.x = destinationPos.x - (jumpSpeed * Time.deltaTime);
@@ -92,6 +93,7 @@ public class PlayerMovementHandler : MonoBehaviour {
                 currentDirection = direction.NONE;
             }
         }
+        Debug.Log(destinationPos.x);
         transform.position = destinationPos;
     }
 
