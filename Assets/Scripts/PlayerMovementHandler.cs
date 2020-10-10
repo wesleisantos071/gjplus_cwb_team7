@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovementHandler : MonoBehaviour {
+    public static PlayerMovementHandler instance;
     Rigidbody rb;
     public float moveSpeed = 5;
     public float leftX = -0.5f;
@@ -13,6 +14,14 @@ public class PlayerMovementHandler : MonoBehaviour {
     public float jumpSpeed = 6;
     bool canMove = true;
     direction currentDirection = direction.NONE;
+
+    public Action onJump;
+
+    private void Awake() {
+        if (instance == null) {
+            instance = this;
+        }
+    }
 
     enum direction {
         NONE,
@@ -59,41 +68,36 @@ public class PlayerMovementHandler : MonoBehaviour {
         Vector3 currentVelocity = rb.velocity;
         currentVelocity.y = jumpSpeed / 3;
         rb.velocity = currentVelocity;
+        onJump?.Invoke();
     }
 
     private void MoveHorizontal() {
         Vector3 destinationPos = transform.position;
-        Debug.Log(currentDirection + "-" + destinationPos.x);
         if (currentDirection == direction.TO_LEFT) {
-            if (transform.position.x > leftX) {
-                destinationPos.x = destinationPos.x - (jumpSpeed * Time.deltaTime);
-            } else {
+            destinationPos.x = destinationPos.x - (jumpSpeed * Time.deltaTime);
+            if (transform.position.x < leftX) {
                 destinationPos.x = leftX;
                 currentDirection = direction.NONE;
             }
         } else if (currentDirection == direction.RIGHT_TO_MIDDLE) {
-            if (transform.position.x > middleX) {
-                destinationPos.x = destinationPos.x - (jumpSpeed * Time.deltaTime);
-            } else {
+            destinationPos.x = destinationPos.x - (jumpSpeed * Time.deltaTime);
+            if (transform.position.x < middleX) {
                 destinationPos.x = middleX;
                 currentDirection = direction.NONE;
             }
         } else if (currentDirection == direction.LEFT_TO_MIDDLE) {
-            if (transform.position.x < middleX) {
-                destinationPos.x = destinationPos.x + (jumpSpeed * Time.deltaTime);
-            } else {
+            destinationPos.x = destinationPos.x + (jumpSpeed * Time.deltaTime);
+            if (transform.position.x > middleX) {
                 destinationPos.x = middleX;
                 currentDirection = direction.NONE;
             }
         } else if (currentDirection == direction.TO_RIGHT) {
-            if (transform.position.x < rightX) {
-                destinationPos.x = destinationPos.x + (jumpSpeed * Time.deltaTime);
-            } else {
+            destinationPos.x = destinationPos.x + (jumpSpeed * Time.deltaTime);
+            if (transform.position.x > rightX) {
                 destinationPos.x = rightX;
                 currentDirection = direction.NONE;
             }
         }
-        Debug.Log(destinationPos.x);
         transform.position = destinationPos;
     }
 

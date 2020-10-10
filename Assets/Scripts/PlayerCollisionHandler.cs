@@ -8,17 +8,23 @@ public class PlayerCollisionHandler : MonoBehaviour {
 
     public Action onHitTree;
     public Action onHitFire;
+    public Action onHitFloor;
     private void Awake() {
         if (instance == null) {
             instance = this;
         }
     }
     private void OnTriggerEnter(Collider other) {
-        Debug.Log(other.gameObject.name);
         if (other.gameObject.CompareTag("Tree")) {
             onHitTree?.Invoke();
         } else if (other.gameObject.CompareTag("Fire")) {
             onHitFire?.Invoke();
+        }
+    }
+
+    private void OnCollisionEnter(Collision other) {
+        if (other.gameObject.CompareTag("Floor")) {
+            onHitFloor?.Invoke();
         }
     }
 }
