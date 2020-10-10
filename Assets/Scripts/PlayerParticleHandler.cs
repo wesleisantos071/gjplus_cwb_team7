@@ -7,19 +7,29 @@ public class PlayerParticleHandler : MonoBehaviour {
 
     public GameObject smoke;
 
+    [SerializeField]
+    private LayerMask fireMask;
+    [SerializeField]
+    private Transform raycastOrigin;
+    [SerializeField]
+    private float raycastDistance;
+    RaycastHit hit;
     void Start() {
         PlayerMovementHandler.instance.onJump += StartWaterParticle;
     }
+    bool raycastEnabled = false;
 
     private void StartWaterParticle() {
         foreach (ParticleSystem part in parts) {
             part.Play();
         }
+        raycastEnabled = true;
         PlayerCollisionHandler.instance.onHitFloor += StopWaterParticle;
     }
 
     private void StopWaterParticle() {
         PlayerCollisionHandler.instance.onHitFloor -= StopWaterParticle;
+        raycastEnabled = false;
         foreach (ParticleSystem part in parts) {
             part.Stop();
         }
@@ -29,8 +39,16 @@ public class PlayerParticleHandler : MonoBehaviour {
         PlayerMovementHandler.instance.onJump -= StartWaterParticle;
     }
 
-    private void OnParticleCollision(GameObject other) {
+    private void FixedUpdate() {
+        if (raycastEnabled && Physics.Raycast(raycastOrigin.position,
+            raycastOrigin.up * -1, out hit, raycastDistance, fireMask, QueryTriggerInteraction.Collide)) {
+            hit.collider.GetComponentInChildren<ParticleSystem>().Stop();
+        }
+    }
 
+    private void OnDrawGizmos() {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawRay(raycastOrigin.position, raycastOrigin.up * -raycastDistance);
     }
 
 }
