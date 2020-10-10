@@ -11,7 +11,7 @@ public class PlayerMovementHandler : MonoBehaviour {
     public float rightX = 0.5f;
     public float smoothSpeed = .3f;
     public float jumpSpeed = 6;
-
+    bool canMove = true;
     direction currentDirection = direction.NONE;
 
     enum direction {
@@ -24,20 +24,44 @@ public class PlayerMovementHandler : MonoBehaviour {
 
     private void Start() {
         rb = GetComponent<Rigidbody>();
-        rb.velocity = Vector3.forward * moveSpeed;
+        PlayerCollisionHandler.instance.onHitTree += StopMovement;
+        PlayerCollisionHandler.instance.onHitFire += StopMovement;
+    }
+
+    private void StopMovement() {
+        canMove = false;
+    }
+
+    private void OnDestroy() {
+        PlayerCollisionHandler.instance.onHitTree -= StopMovement;
+        PlayerCollisionHandler.instance.onHitFire -= StopMovement;
     }
 
     void Update() {
-        int h = HandleInput();
-        if (h != 0) {
-            SetDestination(h);
-        }
-        if (currentDirection != direction.NONE) {
-            Move();
+        if (canMove) {
+            transform.position = new Vector3(transform.position.x,
+                transform.position.y,
+                transform.position.z + (moveSpeed * Time.deltaTime));
+            Vector2 input = HandleInput();
+            if (input.x != 0) {
+                SetDestination(input.x);
+            }
+            if (input.y > 0) {
+                Jump();
+            }
+            if (currentDirection != direction.NONE) {
+                MoveHorizontal();
+            }
         }
     }
 
-    private void Move() {
+    private void Jump() {
+        Vector3 currentVelocity = rb.velocity;
+        currentVelocity.y = jumpSpeed / 3;
+        rb.velocity = currentVelocity;
+    }
+
+    private void MoveHorizontal() {
         Vector3 destinationPos = transform.position;
         if (currentDirection == direction.TO_LEFT) {
             if (transform.position.x > leftX) {
@@ -88,14 +112,21 @@ public class PlayerMovementHandler : MonoBehaviour {
         }
     }
 
-    int HandleInput() {
-        int h = 0;
+    Vector2 HandleInput() {
+        Vector2 input = new Vector2();
+        float h = 0;
         if (Input.GetKeyDown(KeyCode.RightArrow)) {
             h = 1;
         } else if (Input.GetKeyDown(KeyCode.LeftArrow)) {
             h = -1;
         }
+        float v = 0;
+        if (Input.GetKeyDown(KeyCode.UpArrow)) {
+            v = 1;
+        }
         //TODO: implement swipe 
-        return h;
+        input.x = h;
+        input.y = v;
+        return input;
     }
 }

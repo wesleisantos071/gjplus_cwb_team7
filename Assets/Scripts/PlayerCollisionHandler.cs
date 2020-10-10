@@ -13,8 +13,8 @@ public class PlayerCollisionHandler : MonoBehaviour {
             instance = this;
         }
     }
-
-    private void OnCollisionEnter(Collision other) {
+    private void OnTriggerEnter(Collider other) {
+        Debug.Log(other.gameObject.name);
         if (other.gameObject.CompareTag("Tree")) {
             onHitTree?.Invoke();
         } else if (other.gameObject.CompareTag("Fire")) {
