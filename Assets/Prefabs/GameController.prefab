@@ -76,6 +76,11 @@ MonoBehaviour:
     volume: 0.25
     pitch: 1
     source: {fileID: 0}
+  - name: WaterSuck
+    clip: {fileID: 8300000, guid: 5f63a4c535bf24441a5065eff3cfd333, type: 3}
+    volume: 0.25
+    pitch: 1
+    source: {fileID: 0}
   musics:
   - name: MainMusic
     clip: {fileID: 8300000, guid: d1b624bd397a0014a8cb2baae60bc18a, type: 3}

@@ -44,6 +44,7 @@ public class PlayerMovementHandler : MonoBehaviour {
     }
 
     private void IncreaseWaterLevel() {
+        AudioManager.instance.Play("WaterSuck");
         for (int i = 0; i < waterLevels.Length; i++) {
             GameObject water = waterLevels[i];
             if (!water.activeSelf) {
