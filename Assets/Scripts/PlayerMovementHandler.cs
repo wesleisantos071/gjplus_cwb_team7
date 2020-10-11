@@ -29,6 +29,7 @@ public class PlayerMovementHandler : MonoBehaviour {
     }
 
     private void Start() {
+        AudioManager.instance.StopWaterJet();
         rb = GetComponent<Rigidbody>();
         PlayerCollisionHandler.instance.onHitTree += StopMovement;
         PlayerCollisionHandler.instance.onHitFire += StopMovement;
