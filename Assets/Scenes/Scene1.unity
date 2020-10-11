@@ -2426,10 +2426,10 @@ RectTransform:
   m_Father: {fileID: 1840757574}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 156.70001, y: 407.3}
-  m_SizeDelta: {x: -333.38364, y: -858.5197}
+  m_AnchoredPosition: {x: -65.29999, y: -37.200012}
+  m_SizeDelta: {x: 110.61636, y: 30.480286}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &348260503
 MonoBehaviour:
@@ -2640,9 +2640,9 @@ RectTransform:
   m_Father: {fileID: 1840757574}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -74, y: 397.54007}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 148, y: -46.45993}
   m_SizeDelta: {x: 254.76373, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &353812548
@@ -5247,6 +5247,7 @@ GameObject:
   - component: {fileID: 623572164}
   - component: {fileID: 623572166}
   - component: {fileID: 623572165}
+  - component: {fileID: 623572167}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -5280,8 +5281,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43b9293e0b5b3c640956ab7c7ceeb215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  view: {fileID: 0}
-  dataHandler: {fileID: 0}
 --- !u!114 &623572166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5294,6 +5293,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ba19709a42cef74dad4ee654c4c6fb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &623572167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 623572163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f61e4b328fb473f4fa83a8355b247aea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCash: 0
 --- !u!1001 &658392085
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16309,7 +16321,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2ae43667a65bc345974e4b00fc04643, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentScoreText: {fileID: 0}
+  currentScoreText: {fileID: 353812548}
 --- !u!4 &2075185074
 Transform:
   m_ObjectHideFlags: 0
