@@ -9,6 +9,8 @@ public class PlayerCollisionHandler : MonoBehaviour {
     public Action onHitTree;
     public Action onHitFire;
     public Action onHitFloor;
+    public Action onHitWater;
+
     private void Awake() {
         if (instance == null) {
             instance = this;
@@ -19,6 +21,9 @@ public class PlayerCollisionHandler : MonoBehaviour {
             onHitTree?.Invoke();
         } else if (other.gameObject.CompareTag("Fire")) {
             onHitFire?.Invoke();
+        } else if (other.gameObject.CompareTag("Water")) {
+            Destroy(other.transform.parent.gameObject);
+            onHitWater?.Invoke();
         }
     }
 

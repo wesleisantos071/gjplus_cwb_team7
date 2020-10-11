@@ -37,6 +37,17 @@ public class PlayerMovementHandler : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
         PlayerCollisionHandler.instance.onHitTree += StopMovement;
         PlayerCollisionHandler.instance.onHitFire += StopMovement;
+        PlayerCollisionHandler.instance.onHitWater += IncreaseWaterLevel;
+    }
+
+    private void IncreaseWaterLevel() {
+        for (int i = 0; i < waterLevels.Length; i++) {
+            GameObject water = waterLevels[i];
+            if (!water.activeSelf) {
+                water.SetActive(true);
+                break;
+            }
+        }
     }
 
     private void StopMovement() {
