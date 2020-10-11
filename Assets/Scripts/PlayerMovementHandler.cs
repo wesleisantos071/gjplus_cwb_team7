@@ -89,35 +89,35 @@ public class PlayerMovementHandler : MonoBehaviour {
         }
         if (hasWater) {
             Vector3 currentVelocity = rb.velocity;
-            currentVelocity.y = jumpSpeed / 2.5f;
+            currentVelocity.y = jumpSpeed;
             rb.velocity = currentVelocity;
             onJump?.Invoke();
         }
     }
-
+    public float threshold = 0.05f;
     private void MoveHorizontal() {
         Vector3 destinationPos = transform.position;
         if (currentDirection == direction.TO_LEFT) {
             destinationPos.x = destinationPos.x - (jumpSpeed * Time.deltaTime);
-            if (transform.position.x < leftX) {
+            if (destinationPos.x < leftX) {
                 destinationPos.x = leftX;
                 currentDirection = direction.NONE;
             }
         } else if (currentDirection == direction.RIGHT_TO_MIDDLE) {
             destinationPos.x = destinationPos.x - (jumpSpeed * Time.deltaTime);
-            if (transform.position.x < middleX) {
+            if (destinationPos.x < middleX + threshold) {
                 destinationPos.x = middleX;
                 currentDirection = direction.NONE;
             }
         } else if (currentDirection == direction.LEFT_TO_MIDDLE) {
             destinationPos.x = destinationPos.x + (jumpSpeed * Time.deltaTime);
-            if (transform.position.x > middleX) {
+            if (destinationPos.x > middleX - threshold) {
                 destinationPos.x = middleX;
                 currentDirection = direction.NONE;
             }
         } else if (currentDirection == direction.TO_RIGHT) {
             destinationPos.x = destinationPos.x + (jumpSpeed * Time.deltaTime);
-            if (transform.position.x > rightX) {
+            if (destinationPos.x > rightX) {
                 destinationPos.x = rightX;
                 currentDirection = direction.NONE;
             }

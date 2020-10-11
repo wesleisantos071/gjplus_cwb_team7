@@ -17,7 +17,8 @@ public class PlayerCollisionHandler : MonoBehaviour {
         }
     }
     private void OnTriggerEnter(Collider other) {
-        if (other.gameObject.CompareTag("Tree")) {
+        if (other.gameObject.CompareTag("Tree") ||
+            other.gameObject.CompareTag("Rock")) {
             onHitTree?.Invoke();
         } else if (other.gameObject.CompareTag("Fire")) {
             onHitFire?.Invoke();
