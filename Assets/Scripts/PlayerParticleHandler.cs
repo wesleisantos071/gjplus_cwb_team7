@@ -17,10 +17,14 @@ public class PlayerParticleHandler : MonoBehaviour {
     [SerializeField]
     private float raycastDistance;
     RaycastHit hit;
-    void Start() {
+
+    private void Awake() {
         if (instance == null) {
             instance = this;
         }
+    }
+
+    void Start() {
         PlayerMovementHandler.instance.onJump += StartWaterParticle;
     }
     bool raycastEnabled = false;
