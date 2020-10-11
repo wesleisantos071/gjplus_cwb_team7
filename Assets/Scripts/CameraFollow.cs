@@ -2,19 +2,32 @@
 
 public class CameraFollow : MonoBehaviour {
     public Transform target;
-    float distance;
+    float zDistance;
+    float yDistance;
+    public float smoothSpeed = 1.5f;
 
     private void Start() {
-    	
-        distance = target.position.z - transform.position.z;
+        zDistance = target.position.z - transform.position.z;
+        yDistance = transform.position.y - target.position.y;
     }
 
 
     private void LateUpdate() {
-        Vector3 pos = transform.position;
-        if (target.transform.position.z > (pos.z + distance)) {
-            Vector3 targetPos = new Vector3(pos.x, pos.y, target.transform.position.z - distance);
-            transform.position = targetPos;
-        }
+        FollowInY();
+        FollowInZ();
+    }
+
+    private void FollowInY() {
+        Vector3 currentPos = transform.position;
+        float yOffset = (target.transform.position.y + yDistance);
+        Vector3 newPos = new Vector3(currentPos.x, yOffset, currentPos.z);
+        transform.position = Vector3.Lerp(currentPos, newPos, smoothSpeed * Time.deltaTime);
+    }
+
+    private void FollowInZ() {
+        Vector3 currentPos = transform.position;
+        float zOffset = (target.transform.position.z - zDistance);
+        Vector3 newPos = new Vector3(currentPos.x, currentPos.y, zOffset);
+        transform.position = newPos;
     }
 }

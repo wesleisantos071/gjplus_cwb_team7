@@ -37,7 +37,6 @@ public class PlayerMovementHandler : MonoBehaviour {
     }
 
     private void PositionInLane(GameObject lane) {
-        Debug.Log("positioning in lane");
         Vector3 position = transform.position;
         position.x = lane.transform.position.x;
         transform.position = position;
