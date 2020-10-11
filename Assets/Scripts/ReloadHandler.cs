@@ -5,10 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class ReloadHandler : MonoBehaviour {
     public void OnClick() {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
     public void ReloadSandbox() {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
     }
 }

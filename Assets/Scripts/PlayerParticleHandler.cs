@@ -10,12 +10,9 @@ public class PlayerParticleHandler : MonoBehaviour {
     public GameObject smoke;
     public Action onFireExtinct;
 
-    [SerializeField]
-    private LayerMask fireMask;
-    [SerializeField]
-    private Transform raycastOrigin;
-    [SerializeField]
-    private float raycastDistance;
+    public LayerMask fireMask;
+    public float raycastDistance;
+    public Transform raycastOrigin;
     RaycastHit hit;
 
     private void Awake() {
