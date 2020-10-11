@@ -15,7 +15,7 @@ public class PlayerMovementHandler : MonoBehaviour {
     bool canMove = true;
     direction currentDirection = direction.NONE;
 
-    public GameObject[] waterLevels = new GameObject[10];
+    public GameObject[] waterLevels = new GameObject[10];//remaining jumps
 
     public Action onJump;
 
@@ -144,11 +144,9 @@ public class PlayerMovementHandler : MonoBehaviour {
 
     Vector2 HandleInput() {
         Vector2 input = new Vector2();
-        float h = 0;
-        if (Input.GetKeyDown(KeyCode.RightArrow)) {
-            h = 1;
-        } else if (Input.GetKeyDown(KeyCode.LeftArrow)) {
-            h = -1;
+        float h = HandleSwipe();
+        if (h == 0) {
+            h = HandleKeyboard();
         }
         float v = 0;
         if (Input.GetKeyDown(KeyCode.UpArrow)) {
@@ -158,5 +156,60 @@ public class PlayerMovementHandler : MonoBehaviour {
         input.x = h;
         input.y = v;
         return input;
+    }
+
+    private int HandleKeyboard() {
+        int h = 0;
+        if (Input.GetKeyDown(KeyCode.RightArrow)) {
+            h = 1;
+        } else if (Input.GetKeyDown(KeyCode.LeftArrow)) {
+            h = -1;
+        }
+        return h;
+    }
+
+    private int HandleSwipe() {
+        int h = 0;
+        if (swipeStartMarker == Vector3.zero) {
+            HandleInputIn();
+        } else {
+            h = HandleInputOut();
+        }
+        return h;
+    }
+
+    protected Vector3 swipeStartMarker = Vector3.zero;
+    protected Vector3 swipeEndMarker = Vector3.zero;
+    public float minDistance = 20f;
+    private void HandleInputIn() {
+        if (Input.GetMouseButtonDown(0)) {
+            swipeStartMarker = Input.mousePosition;
+        }
+    }
+
+    private int HandleInputOut() {
+        int h = 0;
+        if (Input.GetMouseButtonUp(0)) {
+            swipeEndMarker = Input.mousePosition;
+            h = GetDirection();
+            swipeEndMarker = Vector3.zero;
+            swipeStartMarker = Vector3.zero;
+        }
+        return h;
+    }
+
+    private int GetDirection() {
+        float distX = swipeEndMarker.x - swipeStartMarker.x;
+        int horizontal = 0;
+        if (Math.Abs(distX) > minDistance) {
+            if (distX > 0) {
+                horizontal = 1;
+            } else {
+                horizontal = -1;
+            }
+        } else {
+            Jump();
+        }
+        return horizontal;
     }
 }
