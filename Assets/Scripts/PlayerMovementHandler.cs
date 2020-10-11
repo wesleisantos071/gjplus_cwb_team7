@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovementHandler : MonoBehaviour {
     public static PlayerMovementHandler instance;
@@ -9,7 +10,7 @@ public class PlayerMovementHandler : MonoBehaviour {
     public float moveSpeed = 5;
     public float smoothSpeed = .3f;
     public float jumpSpeed = 6;
-    bool canMove = true;
+    bool canMove = false;
     direction currentDirection = direction.NONE;
 
     public GameObject[] waterLevels = new GameObject[10];//remaining jumps
@@ -35,6 +36,7 @@ public class PlayerMovementHandler : MonoBehaviour {
         PlayerCollisionHandler.instance.onHitFire += DrainWaterLevelsAndStop;
         PlayerCollisionHandler.instance.onHitWater += IncreaseWaterLevel;
         PlayerCollisionHandler.instance.onHitLane += PositionInLane;
+        ReloadHandler.instance.onClickPlay += StartMovement;
     }
 
     private void PositionInLane(GameObject lane) {
@@ -58,6 +60,18 @@ public class PlayerMovementHandler : MonoBehaviour {
     private void StopMovement() {
         canMove = false;
         AudioManager.instance.StopWaterJet();
+        StartCoroutine(RestartLevel());
+    }
+
+    private void StartMovement() {
+        canMove = true;
+    }
+
+    public GameObject loadingScreen;
+    IEnumerator RestartLevel() {
+        yield return new WaitForSeconds(2);
+        loadingScreen.SetActive(true);
+        SceneManager.LoadScene(0);
     }
 
     private void DrainWaterLevelsAndStop() {
@@ -67,13 +81,15 @@ public class PlayerMovementHandler : MonoBehaviour {
         }
         canMove = false;
         AudioManager.instance.StopWaterJet();
+        StartCoroutine(RestartLevel());
     }
 
     private void OnDestroy() {
         PlayerCollisionHandler.instance.onHitTree -= StopMovement;
-        PlayerCollisionHandler.instance.onHitFire += DrainWaterLevelsAndStop;
+        PlayerCollisionHandler.instance.onHitFire -= DrainWaterLevelsAndStop;
         PlayerCollisionHandler.instance.onHitWater -= IncreaseWaterLevel;
         PlayerCollisionHandler.instance.onHitLane -= PositionInLane;
+        ReloadHandler.instance.onClickPlay -= StartMovement;
     }
 
     void Update() {
