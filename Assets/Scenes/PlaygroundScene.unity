@@ -23353,6 +23353,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1843626022820527720, guid: de8821f16b35aba4dbf0f1379a8c7f41,
+        type: 3}
+      propertyPath: sounds.Array.data[2].name
+      value: FireEnd
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843626022820527720, guid: de8821f16b35aba4dbf0f1379a8c7f41,
+        type: 3}
+      propertyPath: sounds.Array.data[2].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 52c9d8e47f4366c4e9b510b00955419b, type: 3}
+    - target: {fileID: 1843626022820527720, guid: de8821f16b35aba4dbf0f1379a8c7f41,
+        type: 3}
+      propertyPath: sounds.Array.data[2].volume
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 8086279473955553112, guid: de8821f16b35aba4dbf0f1379a8c7f41,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -40275,6 +40290,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6796008630291879329, guid: 91037272ac55fe14ea8268a533d72e72,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6796008630291879340, guid: 91037272ac55fe14ea8268a533d72e72,
         type: 3}

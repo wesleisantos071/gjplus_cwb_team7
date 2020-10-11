@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8086279473955553112}
   - component: {fileID: 8086279473955553113}
   - component: {fileID: 8086279473955553115}
+  - component: {fileID: 1843626022820527720}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -57,3 +58,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCash: 0
+--- !u!114 &1843626022820527720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8086279473955553119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd807eaf96f784243ae99338b6f5a2e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: WaterJet
+    clip: {fileID: 8300000, guid: 5bb8ea0e1e1f74b469f51d50c9971417, type: 3}
+    volume: 0.2
+    pitch: 1
+    source: {fileID: 0}
+  - name: FireEnd
+    clip: {fileID: 8300000, guid: 52c9d8e47f4366c4e9b510b00955419b, type: 3}
+    volume: 0.25
+    pitch: 1
+    source: {fileID: 0}
+  musics:
+  - name: MainMusic
+    clip: {fileID: 8300000, guid: d1b624bd397a0014a8cb2baae60bc18a, type: 3}
+    volume: 0.5
+    pitch: 1
+    source: {fileID: 0}
+  - name: FireBackground
+    clip: {fileID: 8300000, guid: dcf876a01d7d34d428e90c7c5f91dd21, type: 3}
+    volume: 0.1
+    pitch: 1
+    source: {fileID: 0}
