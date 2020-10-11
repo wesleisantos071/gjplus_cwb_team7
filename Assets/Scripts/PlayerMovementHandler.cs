@@ -60,19 +60,12 @@ public class PlayerMovementHandler : MonoBehaviour {
     private void StopMovement() {
         canMove = false;
         AudioManager.instance.StopWaterJet();
-        StartCoroutine(RestartLevel());
     }
 
     private void StartMovement() {
         canMove = true;
     }
 
-    public GameObject loadingScreen;
-    IEnumerator RestartLevel() {
-        yield return new WaitForSeconds(2);
-        loadingScreen.SetActive(true);
-        SceneManager.LoadScene(0);
-    }
 
     private void DrainWaterLevelsAndStop() {
         AudioManager.instance.Play("FireEnd");
@@ -81,7 +74,6 @@ public class PlayerMovementHandler : MonoBehaviour {
         }
         canMove = false;
         AudioManager.instance.StopWaterJet();
-        StartCoroutine(RestartLevel());
     }
 
     private void OnDestroy() {

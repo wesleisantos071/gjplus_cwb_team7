@@ -13,14 +13,15 @@ public class HudController : MonoBehaviour {
     void Start() {
         view = HudView.instance;
         dataHandler = DataHandler.instance;
-        currentCash = dataHandler.playerCash;
+        //currentCash = dataHandler.playerCash;
         view.UpdateCash(currentCash);
         PlayerParticleHandler.instance.onFireExtinct += IncreaseCash;
     }
 
     public void IncreaseCash() {
-        dataHandler.IncreaseCash(1); ;
-        currentCash = dataHandler.playerCash;
+        //dataHandler.IncreaseCash(1);
+        //currentCash = dataHandler.playerCash;
+        currentCash++;
         view.UpdateCash(currentCash);
     }
 
