@@ -5,6 +5,7 @@ public class CameraFollow : MonoBehaviour {
     float distance;
 
     private void Start() {
+    	
         distance = target.position.z - transform.position.z;
     }
 
