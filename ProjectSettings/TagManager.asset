@@ -10,6 +10,7 @@ TagManager:
   - Water
   - Rock
   - Lane
+  - PlayerPart
   layers:
   - Default
   - TransparentFX

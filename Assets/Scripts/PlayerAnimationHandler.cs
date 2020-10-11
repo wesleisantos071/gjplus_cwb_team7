@@ -11,9 +11,13 @@ public class PlayerAnimationHandler : MonoBehaviour {
     }
 
     private void OnHitTree() {
-        Vector3 newScale = transform.localScale;
-        newScale.z = 0.15f;
-        transform.localScale = newScale;
+        GameObject[] playerParts = GameObject.FindGameObjectsWithTag("PlayerPart");
+        foreach (GameObject playerPart in playerParts) {
+            if (playerPart.GetComponent<Rigidbody>() == null) {
+                playerPart.AddComponent<Rigidbody>();
+                playerPart.AddComponent<CapsuleCollider>();
+            }
+        }
     }
 
     private void OnHitFire() {

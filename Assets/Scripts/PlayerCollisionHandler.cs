@@ -20,6 +20,8 @@ public class PlayerCollisionHandler : MonoBehaviour {
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.CompareTag("Tree") ||
             other.gameObject.CompareTag("Rock")) {
+            Rigidbody rb = GetComponent<Rigidbody>();
+            Destroy(rb);
             onHitTree?.Invoke();
         } else if (other.CompareTag("Fire")) {
             onHitFire?.Invoke();
