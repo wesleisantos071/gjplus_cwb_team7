@@ -32,7 +32,7 @@ public class PlayerMovementHandler : MonoBehaviour {
         AudioManager.instance.StopWaterJet();
         rb = GetComponent<Rigidbody>();
         PlayerCollisionHandler.instance.onHitTree += StopMovement;
-        PlayerCollisionHandler.instance.onHitFire += StopMovement;
+        PlayerCollisionHandler.instance.onHitFire += DrainWaterLevelsAndStop;
         PlayerCollisionHandler.instance.onHitWater += IncreaseWaterLevel;
         PlayerCollisionHandler.instance.onHitLane += PositionInLane;
     }
@@ -60,9 +60,18 @@ public class PlayerMovementHandler : MonoBehaviour {
         AudioManager.instance.StopWaterJet();
     }
 
+    private void DrainWaterLevelsAndStop() {
+        AudioManager.instance.Play("FireEnd");
+        foreach (GameObject water in waterLevels) {
+            water.SetActive(false);
+        }
+        canMove = false;
+        AudioManager.instance.StopWaterJet();
+    }
+
     private void OnDestroy() {
         PlayerCollisionHandler.instance.onHitTree -= StopMovement;
-        PlayerCollisionHandler.instance.onHitFire -= StopMovement;
+        PlayerCollisionHandler.instance.onHitFire += DrainWaterLevelsAndStop;
         PlayerCollisionHandler.instance.onHitWater -= IncreaseWaterLevel;
         PlayerCollisionHandler.instance.onHitLane -= PositionInLane;
     }

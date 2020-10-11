@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class PlayerParticleHandler : MonoBehaviour {
     public static PlayerParticleHandler instance;
-    public ParticleSystem[] parts;
+    public ParticleSystem[] waterParticleEmiters;
+    public ParticleSystem smokeEmiter;
 
     public GameObject smoke;
     public Action onFireExtinct;
@@ -14,6 +15,7 @@ public class PlayerParticleHandler : MonoBehaviour {
     public float raycastDistance;
     public Transform raycastOrigin;
     RaycastHit hit;
+    bool raycastEnabled = false;
 
     private void Awake() {
         if (instance == null) {
@@ -23,11 +25,16 @@ public class PlayerParticleHandler : MonoBehaviour {
 
     void Start() {
         PlayerMovementHandler.instance.onJump += StartWaterParticle;
+        PlayerCollisionHandler.instance.onHitFire += TurnOnSmoke;
     }
-    bool raycastEnabled = false;
+
+    private void TurnOnSmoke() {
+        smokeEmiter.Play();
+    }
+
 
     private void StartWaterParticle() {
-        foreach (ParticleSystem part in parts) {
+        foreach (ParticleSystem part in waterParticleEmiters) {
             part.Play();
         }
         raycastEnabled = true;
@@ -38,7 +45,7 @@ public class PlayerParticleHandler : MonoBehaviour {
     private void StopWaterParticle() {
         PlayerCollisionHandler.instance.onHitFloor -= StopWaterParticle;
         raycastEnabled = false;
-        foreach (ParticleSystem part in parts) {
+        foreach (ParticleSystem part in waterParticleEmiters) {
             part.Stop();
         }
         AudioManager.instance.StopWaterJet();
@@ -46,6 +53,7 @@ public class PlayerParticleHandler : MonoBehaviour {
 
     private void OnDestroy() {
         PlayerMovementHandler.instance.onJump -= StartWaterParticle;
+        PlayerCollisionHandler.instance.onHitFire -= TurnOnSmoke;
     }
 
     private void FixedUpdate() {
