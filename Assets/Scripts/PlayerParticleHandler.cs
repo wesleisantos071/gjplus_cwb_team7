@@ -54,9 +54,10 @@ public class PlayerParticleHandler : MonoBehaviour {
             hit.collider.GetComponentInChildren<ParticleSystem>().Stop();
             hit.collider.GetComponentInChildren<BoxCollider>().enabled = false;
             onFireExtinct?.Invoke();
-            //GameObject go = GameObject.Instantiate(smoke);
-            //go.transform.parent = null;
-            //go.transform.position = hit.collider.gameObject.transform.position;
+            AudioManager.instance.Play("FireEnd");
+            GameObject go = GameObject.Instantiate(smoke);
+            go.transform.parent = null;
+            go.transform.position = hit.collider.gameObject.transform.position;
         }
     }
 
