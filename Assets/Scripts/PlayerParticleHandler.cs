@@ -1,11 +1,14 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerParticleHandler : MonoBehaviour {
+    public static PlayerParticleHandler instance;
     public ParticleSystem[] parts;
 
     public GameObject smoke;
+    public Action onFireExtinct;
 
     [SerializeField]
     private LayerMask fireMask;
@@ -15,6 +18,9 @@ public class PlayerParticleHandler : MonoBehaviour {
     private float raycastDistance;
     RaycastHit hit;
     void Start() {
+        if (instance == null) {
+            instance = this;
+        }
         PlayerMovementHandler.instance.onJump += StartWaterParticle;
     }
     bool raycastEnabled = false;
@@ -43,6 +49,11 @@ public class PlayerParticleHandler : MonoBehaviour {
         if (raycastEnabled && Physics.Raycast(raycastOrigin.position,
             raycastOrigin.up * -1, out hit, raycastDistance, fireMask, QueryTriggerInteraction.Collide)) {
             hit.collider.GetComponentInChildren<ParticleSystem>().Stop();
+            hit.collider.GetComponentInChildren<BoxCollider>().enabled = false;
+            onFireExtinct?.Invoke();
+            //GameObject go = GameObject.Instantiate(smoke);
+            //go.transform.parent = null;
+            //go.transform.position = hit.collider.gameObject.transform.position;
         }
     }
 

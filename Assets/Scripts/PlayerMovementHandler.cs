@@ -66,7 +66,7 @@ public class PlayerMovementHandler : MonoBehaviour {
 
     private void Jump() {
         Vector3 currentVelocity = rb.velocity;
-        currentVelocity.y = jumpSpeed / 3;
+        currentVelocity.y = jumpSpeed / 2.5f;
         rb.velocity = currentVelocity;
         onJump?.Invoke();
     }
