@@ -15,6 +15,8 @@ public class PlayerMovementHandler : MonoBehaviour {
     bool canMove = true;
     direction currentDirection = direction.NONE;
 
+    public GameObject[] waterLevels = new GameObject[10];
+
     public Action onJump;
 
     private void Awake() {
@@ -65,10 +67,21 @@ public class PlayerMovementHandler : MonoBehaviour {
     }
 
     private void Jump() {
-        Vector3 currentVelocity = rb.velocity;
-        currentVelocity.y = jumpSpeed / 2.5f;
-        rb.velocity = currentVelocity;
-        onJump?.Invoke();
+        bool hasWater = false;
+        for (int i = waterLevels.Length - 1; i >= 0; i--) {
+            GameObject water = waterLevels[i];
+            if (water.activeSelf) {
+                hasWater = true;
+                water.SetActive(false);
+                break;
+            }
+        }
+        if (hasWater) {
+            Vector3 currentVelocity = rb.velocity;
+            currentVelocity.y = jumpSpeed / 2.5f;
+            rb.velocity = currentVelocity;
+            onJump?.Invoke();
+        }
     }
 
     private void MoveHorizontal() {
