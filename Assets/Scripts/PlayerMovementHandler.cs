@@ -55,6 +55,7 @@ public class PlayerMovementHandler : MonoBehaviour {
 
     private void StopMovement() {
         canMove = false;
+        AudioManager.instance.StopWaterJet();
     }
 
     private void OnDestroy() {

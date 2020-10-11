@@ -32,6 +32,7 @@ public class AudioManager : MonoBehaviour {
     private void Start() {
         instance.PlayBackground("FireBackground");
         instance.PlayMusic("MainMusic");
+        ConfigureWaterJet();
     }
 
     public void Play(string soundName) {
@@ -47,6 +48,7 @@ public class AudioManager : MonoBehaviour {
 
     AudioSource currentMusic;
     AudioSource currentBackground;
+    AudioSource waterJet;
 
     public void PlayMusic(string musicName) {
         DataHandler data = DataHandler.instance;
@@ -90,6 +92,25 @@ public class AudioManager : MonoBehaviour {
         //}
     }
 
+    public void ConfigureWaterJet() {
+        DataHandler data = DataHandler.instance;
+        string soundName = "WaterJet";
+        Sound s = Array.Find(musics, sound => sound.name == soundName);
+        if (s == null) {
+            Debug.LogError("backgroundSoundName not found for name'" + soundName + "'");
+            return;
+        }
+        if (instance.waterJet != null) {
+            if (soundName.Equals(instance.waterJet.name)) { return; }
+            if (instance.waterJet.name.Equals(soundName)) {
+                return;
+            }
+            instance.waterJet.Stop();
+        }
+        instance.waterJet = s.source;
+        instance.waterJet.name = soundName;
+    }
+
     internal void ResumeMusic() {
         if (instance.currentMusic != null) {
             instance.currentMusic.Play();
@@ -99,6 +120,17 @@ public class AudioManager : MonoBehaviour {
     internal void StopMusic() {
         if (instance.currentMusic != null) {
             instance.currentMusic.Stop();
+        }
+    }
+    public void PlayWaterJet() {
+        if (instance.waterJet != null) {
+            instance.waterJet.Play();
+        }
+    }
+
+    public void StopWaterJet() {
+        if (instance.waterJet != null) {
+            instance.waterJet.Stop();
         }
     }
 }

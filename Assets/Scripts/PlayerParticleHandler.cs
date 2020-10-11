@@ -31,6 +31,7 @@ public class PlayerParticleHandler : MonoBehaviour {
             part.Play();
         }
         raycastEnabled = true;
+        AudioManager.instance.PlayWaterJet();
         PlayerCollisionHandler.instance.onHitFloor += StopWaterParticle;
     }
 
@@ -40,6 +41,7 @@ public class PlayerParticleHandler : MonoBehaviour {
         foreach (ParticleSystem part in parts) {
             part.Stop();
         }
+        AudioManager.instance.StopWaterJet();
     }
 
     private void OnDestroy() {

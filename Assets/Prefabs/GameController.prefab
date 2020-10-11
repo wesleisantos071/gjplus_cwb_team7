@@ -71,11 +71,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - name: WaterJet
-    clip: {fileID: 8300000, guid: 5bb8ea0e1e1f74b469f51d50c9971417, type: 3}
-    volume: 0.2
-    pitch: 1
-    source: {fileID: 0}
   - name: FireEnd
     clip: {fileID: 8300000, guid: 52c9d8e47f4366c4e9b510b00955419b, type: 3}
     volume: 0.25
@@ -84,11 +79,16 @@ MonoBehaviour:
   musics:
   - name: MainMusic
     clip: {fileID: 8300000, guid: d1b624bd397a0014a8cb2baae60bc18a, type: 3}
-    volume: 0.5
+    volume: 0.3
     pitch: 1
     source: {fileID: 0}
   - name: FireBackground
     clip: {fileID: 8300000, guid: dcf876a01d7d34d428e90c7c5f91dd21, type: 3}
     volume: 0.1
+    pitch: 1
+    source: {fileID: 0}
+  - name: WaterJet
+    clip: {fileID: 8300000, guid: 5bb8ea0e1e1f74b469f51d50c9971417, type: 3}
+    volume: 0.25
     pitch: 1
     source: {fileID: 0}
