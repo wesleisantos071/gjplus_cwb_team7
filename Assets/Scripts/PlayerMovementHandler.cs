@@ -7,9 +7,6 @@ public class PlayerMovementHandler : MonoBehaviour {
     public static PlayerMovementHandler instance;
     Rigidbody rb;
     public float moveSpeed = 5;
-    public float leftX = -0.5f;
-    public float middleX = 0;
-    public float rightX = 0.5f;
     public float smoothSpeed = .3f;
     public float jumpSpeed = 6;
     bool canMove = true;
@@ -28,8 +25,6 @@ public class PlayerMovementHandler : MonoBehaviour {
     enum direction {
         NONE,
         TO_LEFT,
-        RIGHT_TO_MIDDLE,
-        LEFT_TO_MIDDLE,
         TO_RIGHT
     }
 
@@ -38,6 +33,15 @@ public class PlayerMovementHandler : MonoBehaviour {
         PlayerCollisionHandler.instance.onHitTree += StopMovement;
         PlayerCollisionHandler.instance.onHitFire += StopMovement;
         PlayerCollisionHandler.instance.onHitWater += IncreaseWaterLevel;
+        PlayerCollisionHandler.instance.onHitLane += PositionInLane;
+    }
+
+    private void PositionInLane(GameObject lane) {
+        Debug.Log("positioning in lane");
+        Vector3 position = transform.position;
+        position.x = lane.transform.position.x;
+        transform.position = position;
+        currentDirection = direction.NONE;
     }
 
     private void IncreaseWaterLevel() {
@@ -57,6 +61,8 @@ public class PlayerMovementHandler : MonoBehaviour {
     private void OnDestroy() {
         PlayerCollisionHandler.instance.onHitTree -= StopMovement;
         PlayerCollisionHandler.instance.onHitFire -= StopMovement;
+        PlayerCollisionHandler.instance.onHitWater -= IncreaseWaterLevel;
+        PlayerCollisionHandler.instance.onHitLane -= PositionInLane;
     }
 
     void Update() {
@@ -66,7 +72,7 @@ public class PlayerMovementHandler : MonoBehaviour {
                 transform.position.z + (moveSpeed * Time.deltaTime));
             Vector2 input = HandleInput();
             if (input.x != 0) {
-                SetDestination(input.x);
+                SetDirection(input.x);
             }
             if (input.y > 0) {
                 Jump();
@@ -89,56 +95,26 @@ public class PlayerMovementHandler : MonoBehaviour {
         }
         if (hasWater) {
             Vector3 currentVelocity = rb.velocity;
-            currentVelocity.y = jumpSpeed;
+            currentVelocity.y = jumpSpeed / 2;
             rb.velocity = currentVelocity;
             onJump?.Invoke();
         }
     }
-    public float threshold = 0.05f;
     private void MoveHorizontal() {
         Vector3 destinationPos = transform.position;
         if (currentDirection == direction.TO_LEFT) {
             destinationPos.x = destinationPos.x - (jumpSpeed * Time.deltaTime);
-            if (destinationPos.x < leftX) {
-                destinationPos.x = leftX;
-                currentDirection = direction.NONE;
-            }
-        } else if (currentDirection == direction.RIGHT_TO_MIDDLE) {
-            destinationPos.x = destinationPos.x - (jumpSpeed * Time.deltaTime);
-            if (destinationPos.x < middleX + threshold) {
-                destinationPos.x = middleX;
-                currentDirection = direction.NONE;
-            }
-        } else if (currentDirection == direction.LEFT_TO_MIDDLE) {
-            destinationPos.x = destinationPos.x + (jumpSpeed * Time.deltaTime);
-            if (destinationPos.x > middleX - threshold) {
-                destinationPos.x = middleX;
-                currentDirection = direction.NONE;
-            }
         } else if (currentDirection == direction.TO_RIGHT) {
             destinationPos.x = destinationPos.x + (jumpSpeed * Time.deltaTime);
-            if (destinationPos.x > rightX) {
-                destinationPos.x = rightX;
-                currentDirection = direction.NONE;
-            }
         }
         transform.position = destinationPos;
     }
 
-    private void SetDestination(float h) {
-        Vector3 currentPos = transform.position;
-        if (h > 0) {// move right
-            if (currentPos.x < middleX) {
-                currentDirection = direction.LEFT_TO_MIDDLE;
-            } else if (currentPos.x < rightX) {
-                currentDirection = direction.TO_RIGHT;
-            }
-        } else if (h < 0) {// move left
-            if (currentPos.x > middleX) {
-                currentDirection = direction.RIGHT_TO_MIDDLE;
-            } else if (currentPos.x > leftX) {
-                currentDirection = direction.TO_LEFT;
-            }
+    private void SetDirection(float h) {
+        if (h > 0) {
+            currentDirection = direction.TO_RIGHT;
+        } else if (h < 0) {
+            currentDirection = direction.TO_LEFT;
         }
     }
 

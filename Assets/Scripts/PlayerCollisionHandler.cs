@@ -10,6 +10,7 @@ public class PlayerCollisionHandler : MonoBehaviour {
     public Action onHitFire;
     public Action onHitFloor;
     public Action onHitWater;
+    public Action<GameObject> onHitLane;
 
     private void Awake() {
         if (instance == null) {
@@ -20,11 +21,13 @@ public class PlayerCollisionHandler : MonoBehaviour {
         if (other.gameObject.CompareTag("Tree") ||
             other.gameObject.CompareTag("Rock")) {
             onHitTree?.Invoke();
-        } else if (other.gameObject.CompareTag("Fire")) {
+        } else if (other.CompareTag("Fire")) {
             onHitFire?.Invoke();
-        } else if (other.gameObject.CompareTag("Water")) {
+        } else if (other.CompareTag("Water")) {
             Destroy(other.transform.parent.gameObject);
             onHitWater?.Invoke();
+        } else if (other.CompareTag("Lane")) {
+            onHitLane?.Invoke(other.gameObject);
         }
     }
 
