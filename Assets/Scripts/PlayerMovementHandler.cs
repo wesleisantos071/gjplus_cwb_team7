@@ -16,6 +16,8 @@ public class PlayerMovementHandler : MonoBehaviour {
     public GameObject[] waterLevels = new GameObject[10];//remaining jumps
 
     public Action onJump;
+    public Action onMoveRight;
+    public Action onMoveLeft;
     protected Vector3 swipeStartMarker = Vector3.zero;
     protected Vector3 swipeEndMarker = Vector3.zero;
     public float minDistance = 20f;
@@ -149,6 +151,13 @@ public class PlayerMovementHandler : MonoBehaviour {
         if (h == 0) {
             h = HandleKeyboard();
         }
+        //tutorial block
+        if (h > 0) {
+            onMoveRight?.Invoke();
+        } else if (h < 0) {
+            onMoveLeft?.Invoke();
+        }
+
         float v = 0;
         if (Input.GetKeyDown(KeyCode.UpArrow)) {
             v = 1;
