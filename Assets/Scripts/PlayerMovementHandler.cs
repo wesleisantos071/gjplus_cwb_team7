@@ -16,17 +16,21 @@ public class PlayerMovementHandler : MonoBehaviour {
     public GameObject[] waterLevels = new GameObject[10];//remaining jumps
 
     public Action onJump;
+    protected Vector3 swipeStartMarker = Vector3.zero;
+    protected Vector3 swipeEndMarker = Vector3.zero;
+    public float minDistance = 20f;
+    public Action onPlayerDie;
 
-    private void Awake() {
-        if (instance == null) {
-            instance = this;
-        }
-    }
 
     enum direction {
         NONE,
         TO_LEFT,
         TO_RIGHT
+    }
+    private void Awake() {
+        if (instance == null) {
+            instance = this;
+        }
     }
 
     private void Start() {
@@ -56,15 +60,16 @@ public class PlayerMovementHandler : MonoBehaviour {
             }
         }
     }
+    private void StartMovement() {
+        canMove = true;
+    }
 
     private void StopMovement() {
         canMove = false;
         AudioManager.instance.StopWaterJet();
+        onPlayerDie?.Invoke();
     }
 
-    private void StartMovement() {
-        canMove = true;
-    }
 
 
     private void DrainWaterLevelsAndStop() {
@@ -72,8 +77,9 @@ public class PlayerMovementHandler : MonoBehaviour {
         foreach (GameObject water in waterLevels) {
             water.SetActive(false);
         }
-        canMove = false;
         AudioManager.instance.StopWaterJet();
+        canMove = false;
+        onPlayerDie?.Invoke();
     }
 
     private void OnDestroy() {
@@ -173,9 +179,7 @@ public class PlayerMovementHandler : MonoBehaviour {
         return h;
     }
 
-    protected Vector3 swipeStartMarker = Vector3.zero;
-    protected Vector3 swipeEndMarker = Vector3.zero;
-    public float minDistance = 20f;
+
     private void HandleInputIn() {
         if (Input.GetMouseButtonDown(0)) {
             swipeStartMarker = Input.mousePosition;
