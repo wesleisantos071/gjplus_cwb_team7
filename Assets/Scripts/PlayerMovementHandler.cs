@@ -122,7 +122,7 @@ public class PlayerMovementHandler : MonoBehaviour {
         }
         if (hasWater) {
             Vector3 currentVelocity = rb.velocity;
-            currentVelocity.y = jumpSpeed / 1.5f;
+            currentVelocity.y = jumpSpeed * 1.2f;
             rb.velocity = currentVelocity;
             onJump?.Invoke();
         }

@@ -56031,6 +56031,16 @@ PrefabInstance:
       propertyPath: loadingScreen
       value: 
       objectReference: {fileID: 727502864}
+    - target: {fileID: 6796008630291879329, guid: 91037272ac55fe14ea8268a533d72e72,
+        type: 3}
+      propertyPath: jumpSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6796008630291879330, guid: 91037272ac55fe14ea8268a533d72e72,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6796008630291879340, guid: 91037272ac55fe14ea8268a533d72e72,
         type: 3}
       propertyPath: m_Name
