@@ -5987,7 +5987,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 8
   smoothSpeed: 0.3
-  jumpSpeed: 30
+  jumpSpeed: 20
   waterLevels:
   - {fileID: 6796008630101617718}
   - {fileID: 153149481996510689}
