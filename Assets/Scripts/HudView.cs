@@ -9,7 +9,6 @@ public class HudView : MonoBehaviour {
     public static HudView instance;
     public TextMeshProUGUI currentScoreText;
     public TextMeshProUGUI gameoverScoreText;
-    public GameObject scoreIcon;
     public GameObject mainMenu;
     public GameObject endScreen;
 
@@ -53,6 +52,5 @@ public class HudView : MonoBehaviour {
 
     public void UpdateCash(int currentScore) {
         currentScoreText.text = currentScore.ToString();
-        scoreIcon.GetComponent<Animator>().SetTrigger("increase");
     }
 }
