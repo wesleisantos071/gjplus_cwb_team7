@@ -23,6 +23,7 @@ public class PlayerCollisionHandler : MonoBehaviour {
             Rigidbody rb = GetComponent<Rigidbody>();
             Destroy(rb);
             onHitTree?.Invoke();
+            Destroy(this);
         } else if (other.CompareTag("Fire")) {
             onHitFire?.Invoke();
         } else if (other.CompareTag("Water")) {
@@ -34,7 +35,8 @@ public class PlayerCollisionHandler : MonoBehaviour {
     }
 
     private void OnCollisionEnter(Collision other) {
-        if (other.gameObject.CompareTag("Floor")) {
+        Rigidbody rb = GetComponent<Rigidbody>();
+        if (rb.velocity.y < 0 && other.gameObject.CompareTag("Floor")) {
             onHitFloor?.Invoke();
         }
     }
