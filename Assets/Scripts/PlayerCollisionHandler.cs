@@ -12,11 +12,13 @@ public class PlayerCollisionHandler : MonoBehaviour {
     public Action onHitWater;
     public Action<GameObject> onHitLane;
 
+
     private void Awake() {
         if (instance == null) {
             instance = this;
         }
     }
+
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.CompareTag("Tree") ||
             other.gameObject.CompareTag("Rock")) {
