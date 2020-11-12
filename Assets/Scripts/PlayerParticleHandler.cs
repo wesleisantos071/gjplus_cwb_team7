@@ -66,6 +66,8 @@ public class PlayerParticleHandler : MonoBehaviour {
             GameObject go = GameObject.Instantiate(smoke);
             go.transform.parent = null;
             go.transform.position = hit.collider.gameObject.transform.position;
+            Destroy(hit.transform.gameObject, 1);
+            Destroy(go, 3);
         }
     }
 
