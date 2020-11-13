@@ -23,6 +23,10 @@ public class PlayerMovementHandler : MonoBehaviour {
     public float minDistance = 20f;
     public Action onPlayerDie;
 
+    float elapsedTime;
+    public float timeToAccelerate;
+    public float speedLimit;
+    public float speedIncrease;
 
     enum direction {
         NONE,
@@ -62,12 +66,15 @@ public class PlayerMovementHandler : MonoBehaviour {
             }
         }
     }
+
     private void StartMovement() {
         canMove = true;
+        elapsedTime = 0f;
     }
 
     private void StopMovement() {
         canMove = false;
+        AudioManager.instance.Play("Crash");
         AudioManager.instance.StopWaterJet();
         onPlayerDie?.Invoke();
     }
@@ -106,6 +113,11 @@ public class PlayerMovementHandler : MonoBehaviour {
             }
             if (currentDirection != direction.NONE) {
                 MoveHorizontal();
+            }
+            elapsedTime += Time.deltaTime;
+            if (moveSpeed < speedLimit && elapsedTime > timeToAccelerate) {
+                moveSpeed += speedIncrease;
+                elapsedTime = 0;
             }
         }
     }

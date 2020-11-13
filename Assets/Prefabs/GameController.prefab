@@ -58,6 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCash: 0
+  highScore: 0
 --- !u!114 &1843626022820527720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,6 +79,11 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: WaterSuck
     clip: {fileID: 8300000, guid: 5f63a4c535bf24441a5065eff3cfd333, type: 3}
+    volume: 0.25
+    pitch: 1
+    source: {fileID: 0}
+  - name: Crash
+    clip: {fileID: 8300000, guid: ddf9f15b94dd43641a58e15b88d966fc, type: 3}
     volume: 0.25
     pitch: 1
     source: {fileID: 0}
