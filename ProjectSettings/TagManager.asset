@@ -21,6 +21,7 @@ TagManager:
   - 
   - 
   - Fire
+  - Player
   - 
   - 
   - 
@@ -42,8 +43,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - PostProcessing
   m_SortingLayers:
   - name: Default
     uniqueID: 0
