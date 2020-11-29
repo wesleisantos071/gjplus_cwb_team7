@@ -90,7 +90,6 @@ GameObject:
   - component: {fileID: 7936938686330548493}
   - component: {fileID: 7624205041702653861}
   - component: {fileID: 8527120032824622179}
-  - component: {fileID: 6666449390733365428}
   m_Layer: 0
   m_Name: water_pool
   m_TagString: Water
@@ -159,19 +158,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &6666449390733365428
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1113406050652316456}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1399852157663275366
 GameObject:
   m_ObjectHideFlags: 0
@@ -497,6 +483,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8042667495116517128}
+  - component: {fileID: 4299653602939910870}
+  - component: {fileID: 3732189970641999618}
   m_Layer: 0
   m_Name: Water
   m_TagString: Untagged
@@ -524,3 +512,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4299653602939910870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5866343165045047214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e56fdcf81e04fd14da94e8eb0d2382c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!135 &3732189970641999618
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5866343165045047214}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.7179396
+  m_Center: {x: 8.374289, y: 3.4866972, z: -17.059921}

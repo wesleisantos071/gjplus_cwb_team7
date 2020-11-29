@@ -29,7 +29,7 @@ public class PlayerCollisionHandler : MonoBehaviour {
         } else if (other.CompareTag("Fire")) {
             onHitFire?.Invoke();
         } else if (other.CompareTag("Water")) {
-            Destroy(other.transform.parent.gameObject);
+            other.GetComponent<IDestructable>().SimulateDestruction();
             onHitWater?.Invoke();
         } else if (other.CompareTag("Lane")) {
             onHitLane?.Invoke(other.gameObject);

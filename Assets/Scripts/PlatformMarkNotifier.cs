@@ -21,8 +21,8 @@ public class PlatformMarkNotifier : MonoBehaviour {
 
     private void Update() {
         float currentZ = transform.position.z;
-        GameObject nextMarker = platformMarkers.Peek();
-        if (nextMarker != null) {
+        if (platformMarkers.Count>0) {
+            GameObject nextMarker = platformMarkers.Peek();
             if (currentZ > nextMarker.transform.position.z) {
                 platformMarkers.Dequeue();
                 PlatformController.instance.CreatePlatform();

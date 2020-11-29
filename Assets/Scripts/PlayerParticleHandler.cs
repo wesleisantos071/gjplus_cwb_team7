@@ -59,15 +59,9 @@ public class PlayerParticleHandler : MonoBehaviour {
     private void FixedUpdate() {
         if (raycastEnabled && Physics.Raycast(raycastOrigin.position,
             raycastOrigin.up * -1, out hit, raycastDistance, fireMask, QueryTriggerInteraction.Collide)) {
-            hit.collider.GetComponentInChildren<ParticleSystem>().Stop();
-            hit.collider.GetComponentInChildren<BoxCollider>().enabled = false;
+            hit.collider.GetComponent<IDestructable>().SimulateDestruction();
             onFireExtinct?.Invoke();
             AudioManager.instance.Play("FireEnd");
-            GameObject go = GameObject.Instantiate(smoke);
-            go.transform.parent = null;
-            go.transform.position = hit.collider.gameObject.transform.position;
-            Destroy(hit.transform.gameObject, 1);
-            Destroy(go, 3);
         }
     }
 

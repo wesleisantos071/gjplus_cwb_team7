@@ -19,9 +19,6 @@ public class ObjectPooler : MonoBehaviour {
         if (instance == null) {
             instance = this;
         }
-    }
-
-    void Start() {
         poolDictionary = new Dictionary<string, Queue<GameObject>>();
         foreach (Pool pool in pools) {
             Queue<GameObject> objectPool = new Queue<GameObject>();
