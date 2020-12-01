@@ -61,7 +61,6 @@ public class PlayerParticleHandler : MonoBehaviour {
             raycastOrigin.up * -1, out hit, raycastDistance, fireMask, QueryTriggerInteraction.Collide)) {
             hit.collider.GetComponent<IDestructable>().SimulateDestruction();
             onFireExtinct?.Invoke();
-            AudioManager.instance.Play("FireEnd");
         }
     }
 
