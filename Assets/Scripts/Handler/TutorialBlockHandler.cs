@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TutorialBlocker : MonoBehaviour {
+public class TutorialBlockHandler : MonoBehaviour {
     public GameObject hint;
     public direction awaitingDiretionInput;
     public enum direction {

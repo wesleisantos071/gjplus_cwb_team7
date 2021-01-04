@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectFollower : MonoBehaviour {
+public class ObjectFollowHandler : MonoBehaviour {
     public GameObject target;
     Vector3 offset;
     public bool followX;

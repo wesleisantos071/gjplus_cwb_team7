@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlatformMarkNotifier : MonoBehaviour {
+public class PlatformMarkNotifyHandler : MonoBehaviour {
 
     Queue<GameObject> platformMarkers;
 

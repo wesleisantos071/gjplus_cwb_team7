@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlatformKiller : MonoBehaviour {
+public class PlatformKillHandler : MonoBehaviour {
     private void OnCollisionEnter(Collision collision) {
         Destroy(collision.gameObject);
     }

@@ -8,7 +8,7 @@ public class PlatformController : MonoBehaviour {
     public System.Action<GameObject> onCreatePlaform;
     public float platformSize;
     List<string> platformTags;
-    ObjectPooler platformPooler;
+    ObjectPoolHandler platformPooler;
 
     private void Awake() {
         if (instance == null) {
@@ -17,7 +17,7 @@ public class PlatformController : MonoBehaviour {
     }
 
     private void Start() {
-        platformPooler = ObjectPooler.instance;
+        platformPooler = ObjectPoolHandler.instance;
         platformTags = new List<string>(platformPooler.poolDictionary.Keys);
         lastPlatform = transform.GetChild(0).gameObject;
         CreatePlatform();
