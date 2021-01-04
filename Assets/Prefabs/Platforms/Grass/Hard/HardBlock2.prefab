@@ -680,6 +680,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TreeDead3
       objectReference: {fileID: 0}
+    - target: {fileID: 455957966157313408, guid: 8b0ca07c8f2282640aa87c8cf64de1b2,
+        type: 3}
+      propertyPath: m_TagString
+      value: Tree
+      objectReference: {fileID: 0}
     - target: {fileID: 455957966157736352, guid: 8b0ca07c8f2282640aa87c8cf64de1b2,
         type: 3}
       propertyPath: m_LocalPosition.x
