@@ -40,7 +40,7 @@ public class PlayerMovementHandler : MonoBehaviour {
     }
 
     private void Start() {
-        AudioManager.instance.StopWaterJet();
+        AudioHandler.instance.StopWaterJet();
         rb = GetComponent<Rigidbody>();
         PlayerCollisionHandler.instance.onHitTree += StopMovement;
         PlayerCollisionHandler.instance.onHitFire += DrainWaterLevelsAndStop;
@@ -57,7 +57,7 @@ public class PlayerMovementHandler : MonoBehaviour {
     }
 
     private void IncreaseWaterLevel() {
-        AudioManager.instance.Play("WaterSuck");
+        AudioHandler.instance.Play("WaterSuck");
         for (int i = 0; i < waterLevels.Length; i++) {
             GameObject water = waterLevels[i];
             if (!water.activeSelf) {
@@ -74,19 +74,19 @@ public class PlayerMovementHandler : MonoBehaviour {
 
     private void StopMovement() {
         canMove = false;
-        AudioManager.instance.Play("Crash");
-        AudioManager.instance.StopWaterJet();
+        AudioHandler.instance.Play("Crash");
+        AudioHandler.instance.StopWaterJet();
         onPlayerDie?.Invoke();
     }
 
 
 
     private void DrainWaterLevelsAndStop() {
-        AudioManager.instance.Play("FireEnd");
+        AudioHandler.instance.Play("FireEnd");
         foreach (GameObject water in waterLevels) {
             water.SetActive(false);
         }
-        AudioManager.instance.StopWaterJet();
+        AudioHandler.instance.StopWaterJet();
         canMove = false;
         onPlayerDie?.Invoke();
     }

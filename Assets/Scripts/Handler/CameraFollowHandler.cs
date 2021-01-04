@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class CameraFollow : MonoBehaviour {
+public class CameraFollowHandler : MonoBehaviour {
     public Transform target;
     float zDistance;
     float yDistance;

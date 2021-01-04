@@ -14,7 +14,7 @@ public class FlameHandler : MonoBehaviour, IDestructable {
     }
 
     public void SimulateDestruction() {
-        AudioManager.instance.Play("FireEnd");
+        AudioHandler.instance.Play("FireEnd");
         collider.enabled = false;
         flame.GetComponentInChildren<ParticleSystem>().Stop();
         smoke.GetComponentInChildren<ParticleSystem>().Play();

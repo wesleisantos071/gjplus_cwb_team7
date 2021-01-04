@@ -2811,8 +2811,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pools:
-  - tag: Easy5
-    prefab: {fileID: 8466318517440448519, guid: f5612a6e001a037459e4cf144ae4b525,
+  - tag: e1
+    prefab: {fileID: 8466318517440448519, guid: 95a0151a3dbde924484e619ad602ee6c,
+      type: 3}
+    size: 3
+  - tag: e2
+    prefab: {fileID: 8466318517440448519, guid: 556e0664ebf87db4a8fbb4d229b85de0,
+      type: 3}
+    size: 3
+  - tag: m1
+    prefab: {fileID: 8466318517440448519, guid: 4c492d16fa29415498162ea1d704b952,
+      type: 3}
+    size: 3
+  - tag: h1
+    prefab: {fileID: 8466318517440448519, guid: 86fc18e90c9f457488ffa95a384957bb,
+      type: 3}
+    size: 3
+  - tag: h2
+    prefab: {fileID: 8466318517440448519, guid: 6aaf34ec4df578c4e9f7caf2a9a37e18,
       type: 3}
     size: 3
 --- !u!4 &1641713825

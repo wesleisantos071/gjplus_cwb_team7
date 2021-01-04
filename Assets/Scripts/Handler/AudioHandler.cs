@@ -2,8 +2,8 @@
 using UnityEngine.Audio;
 using System;
 
-public class AudioManager : MonoBehaviour {
-    public static AudioManager instance;
+public class AudioHandler : MonoBehaviour {
+    public static AudioHandler instance;
     public Sound[] sounds;
     public Sound[] musics;
 

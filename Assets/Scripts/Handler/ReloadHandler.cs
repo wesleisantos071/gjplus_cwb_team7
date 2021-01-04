@@ -18,7 +18,7 @@ public class ReloadHandler : MonoBehaviour {
     }
 
     public void OnClickPlay() {
-        AudioManager.instance.StopWaterJet();
+        AudioHandler.instance.StopWaterJet();
         onClickPlay?.Invoke();
     }
 
