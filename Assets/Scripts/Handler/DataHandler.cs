@@ -17,6 +17,8 @@ public class DataHandler : MonoBehaviour {
     public bool soundEnabled;
     public LocalizationSystem.Language selectedLanguage;
 
+    public Action onResetHighScore;
+
     private void Awake() {
         instance = this;
         DontDestroyOnLoad(gameObject);
@@ -77,11 +79,17 @@ public class DataHandler : MonoBehaviour {
         Save();
     }
 
-    internal void SaveHighScore(int newScore) {
+    public void SaveHighScore(int newScore) {
         if (highScore < newScore) {
             highScore = newScore;
         }
         Save();
+    }
+
+    public void ResetHighScore() {
+        highScore = 0;
+        Save();
+        onResetHighScore?.Invoke();
     }
 
     public void SetSelectedLanguage(LocalizationSystem.Language language) {

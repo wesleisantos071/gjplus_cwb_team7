@@ -859,6 +859,7 @@ GameObject:
   - component: {fileID: 6328292461381061455}
   - component: {fileID: 3004082417502552257}
   - component: {fileID: 1787523285832254032}
+  - component: {fileID: 2244972136225513663}
   m_Layer: 5
   m_Name: BtnReset
   m_TagString: Untagged
@@ -965,7 +966,32 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3004082417502552257}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2244972136225513663}
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2244972136225513663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2200053790487938367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4c59679b06f0413eb97d49eb0dcf5f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuPrefab: {fileID: 9218426702052588011, guid: 84f110ac35fab4e09a6cd4bf9163fc79,
+    type: 3}
 --- !u!1 &2670912939556341389
 GameObject:
   m_ObjectHideFlags: 0
