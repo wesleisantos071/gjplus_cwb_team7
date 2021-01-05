@@ -1101,6 +1101,7 @@ GameObject:
   - component: {fileID: 601943197}
   - component: {fileID: 601943199}
   - component: {fileID: 601943198}
+  - component: {fileID: 601943200}
   m_Layer: 5
   m_Name: scoreText
   m_TagString: Untagged
@@ -1247,6 +1248,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 601943196}
   m_CullTransparentMesh: 0
+--- !u!114 &601943200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 601943196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9abae2c47b6dd4053b35f008207eb587, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &685600454
 GameObject:
   m_ObjectHideFlags: 0
@@ -3226,6 +3239,7 @@ GameObject:
   - component: {fileID: 1704477032}
   - component: {fileID: 1704477031}
   - component: {fileID: 1704477030}
+  - component: {fileID: 1704477033}
   m_Layer: 5
   m_Name: ButtonCredits
   m_TagString: Untagged
@@ -3296,8 +3310,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1111140814}
-        m_MethodName: OnClickPlay
+      - m_Target: {fileID: 1704477033}
+        m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3344,6 +3358,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1704477028}
   m_CullTransparentMesh: 0
+--- !u!114 &1704477033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1704477028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4c59679b06f0413eb97d49eb0dcf5f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuPrefab: {fileID: 0}
 --- !u!1 &1733442726
 GameObject:
   m_ObjectHideFlags: 0
