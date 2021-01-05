@@ -6,6 +6,9 @@ public class AudioHandler : MonoBehaviour {
     public static AudioHandler instance;
     public Sound[] sounds;
     public Sound[] musics;
+    AudioSource currentMusic;
+    AudioSource currentBackground;
+    AudioSource waterJet;
 
     // Use this for initialization
     void Awake() {
@@ -26,29 +29,26 @@ public class AudioHandler : MonoBehaviour {
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
         }
-        PlayMusic(musics[0].name);
     }
 
     private void Start() {
+        PlayMusic(musics[0].name);
         instance.PlayBackground("FireBackground");
         instance.PlayMusic("MainMusic");
         ConfigureWaterJet();
     }
 
     public void Play(string soundName) {
-        //if (DataHandler.instance.soundEnabled) {
-        Sound s = Array.Find(sounds, sound => sound.name == soundName);
-        if (s == null) {
-            Debug.LogError("Sound not found for name'" + soundName + "'");
-            return;
+        if (DataHandler.instance.soundEnabled) {
+            Sound s = Array.Find(sounds, sound => sound.name == soundName);
+            if (s == null) {
+                Debug.LogError("Sound not found for name'" + soundName + "'");
+                return;
+            }
+            s.source.Play();
         }
-        s.source.Play();
-        //}
     }
 
-    AudioSource currentMusic;
-    AudioSource currentBackground;
-    AudioSource waterJet;
 
     public void PlayMusic(string musicName) {
         DataHandler data = DataHandler.instance;
@@ -66,12 +66,13 @@ public class AudioHandler : MonoBehaviour {
         }
         instance.currentMusic = s.source;
         instance.currentMusic.name = musicName;
-        //if (data.musicEnabled) {
-        instance.currentMusic.Play();
-        //}
+        if (data.musicEnabled) {
+            instance.currentMusic.Play();
+        }
     }
 
     public void PlayBackground(string backgroundSoundName) {
+
         DataHandler data = DataHandler.instance;
         Sound s = Array.Find(musics, sound => sound.name == backgroundSoundName);
         if (s == null) {
@@ -87,9 +88,9 @@ public class AudioHandler : MonoBehaviour {
         }
         instance.currentBackground = s.source;
         instance.currentBackground.name = backgroundSoundName;
-        //if (data.musicEnabled) {
-        instance.currentBackground.Play();
-        //}
+        if (data.musicEnabled) {
+            instance.currentBackground.Play();
+        }
     }
 
     public void ConfigureWaterJet() {

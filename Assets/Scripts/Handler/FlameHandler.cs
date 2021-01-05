@@ -7,15 +7,15 @@ public class FlameHandler : MonoBehaviour, IDestructable {
 
     public GameObject smoke;
     public GameObject flame;
-    BoxCollider collider;
+    BoxCollider boxCollider;
 
     private void Start() {
-        collider = GetComponent<BoxCollider>();
+        boxCollider = GetComponent<BoxCollider>();
     }
 
     public void SimulateDestruction() {
         AudioHandler.instance.Play("FireEnd");
-        collider.enabled = false;
+        boxCollider.enabled = false;
         flame.GetComponentInChildren<ParticleSystem>().Stop();
         smoke.GetComponentInChildren<ParticleSystem>().Play();
         StartCoroutine(ActivateAgain());
@@ -25,6 +25,6 @@ public class FlameHandler : MonoBehaviour, IDestructable {
         yield return new WaitForSeconds(2);
         smoke.GetComponentInChildren<ParticleSystem>().Stop();
         flame.GetComponentInChildren<ParticleSystem>().Play();
-        collider.enabled = true;
+        boxCollider.enabled = true;
     }
 }
