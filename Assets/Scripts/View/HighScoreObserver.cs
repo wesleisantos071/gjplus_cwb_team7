@@ -17,6 +17,6 @@ public class HighScoreObserver : MonoBehaviour {
     }
 
     private void OnDestroy() {
-        data.onResetHighScore += OnResetHighScore;
+        data.onResetHighScore -= OnResetHighScore;
     }
 }
