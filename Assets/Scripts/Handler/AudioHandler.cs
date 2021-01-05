@@ -124,7 +124,7 @@ public class AudioHandler : MonoBehaviour {
         }
     }
     public void PlayWaterJet() {
-        if (instance.waterJet != null) {
+        if (instance.waterJet != null && DataHandler.instance.soundEnabled) {
             instance.waterJet.Play();
         }
     }
