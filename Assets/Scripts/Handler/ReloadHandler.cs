@@ -18,6 +18,8 @@ public class ReloadHandler : MonoBehaviour {
     }
 
     public void OnClickPlay() {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        player.transform.position = new Vector3(0, 2.03f, 2.03f);
         AudioHandler.instance.StopWaterJet();
         onClickPlay?.Invoke();
     }
