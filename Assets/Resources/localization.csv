@@ -7,6 +7,7 @@ _reset_confirm,Sure?,Certeza?
 _yes,yeap!,sim sim!
 _no,nope!,no no no!
 _credits,CREDITS,CREDITOS
-_author,,
+_author,Author,Autor
 _disclaimer_txt,This game was developed as a final project of the Unity Development course at Gamescola,Este jogo foi desenvolvido como projeto final do curso de Desenvolvimento de jogos em Unity na Gamescola
 _sfx,Sound Effects,Efeitos Sonóros
+_art,Art,Arte
