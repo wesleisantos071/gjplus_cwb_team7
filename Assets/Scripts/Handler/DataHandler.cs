@@ -79,11 +79,17 @@ public class DataHandler : MonoBehaviour {
         Save();
     }
 
-    public void SaveHighScore(int newScore) {
+    /**
+     * return true if new highscore, false if not
+     * 
+     */
+    public bool SaveHighScore(int newScore) {
         if (highScore < newScore) {
             highScore = newScore;
+            Save();
+            return true;
         }
-        Save();
+        return false;
     }
 
     public void ResetHighScore() {

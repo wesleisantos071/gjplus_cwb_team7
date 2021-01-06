@@ -15,6 +15,9 @@ public class HudView : MonoBehaviour {
     public TextMeshProUGUI mainMenuCash;
     public TextMeshProUGUI mainMenuHighScore;
 
+    public TextMeshProUGUI recordText;
+    public TextMeshProUGUI newRecordText;
+
     private void Awake() {
         if (instance == null) {
             instance = this;
@@ -35,7 +38,14 @@ public class HudView : MonoBehaviour {
     void ShowEnding() {
         int currentScore = Convert.ToInt32(currentScoreText.text);
         DataHandler.instance.IncreaseCash(currentScore);
-        DataHandler.instance.SaveHighScore(currentScore);
+        bool newHighScore = DataHandler.instance.SaveHighScore(currentScore);
+        if (newHighScore) {
+            recordText.enabled = false;
+            newRecordText.enabled = true;
+        } else {
+            recordText.enabled = true;
+            newRecordText.enabled = false;
+        }
         StartCoroutine(DelayedGameover());
     }
 

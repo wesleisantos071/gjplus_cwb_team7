@@ -9,6 +9,8 @@ public class HighScoreObserver : MonoBehaviour {
     private void Start() {
         data = DataHandler.instance;
         data.onResetHighScore += OnResetHighScore;
+        TextMeshProUGUI text = GetComponent<TextMeshProUGUI>();
+        text.text = data.highScore.ToString();
     }
 
     private void OnResetHighScore() {
