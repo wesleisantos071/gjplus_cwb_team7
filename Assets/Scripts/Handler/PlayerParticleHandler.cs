@@ -26,10 +26,17 @@ public class PlayerParticleHandler : MonoBehaviour {
     void Start() {
         PlayerMovementHandler.instance.onJump += StartWaterParticle;
         PlayerCollisionHandler.instance.onHitFire += TurnOnSmoke;
+        ReloadHandler.instance.onClickPlay += TurnOffSmoke;
     }
 
     private void TurnOnSmoke() {
+        smokeEmiter.gameObject.SetActive(true);
         smokeEmiter.Play();
+    }
+
+    private void TurnOffSmoke() {
+        smokeEmiter.Stop();
+        smokeEmiter.gameObject.SetActive(false);
     }
 
 

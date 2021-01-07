@@ -765,6 +765,11 @@ PrefabInstance:
       propertyPath: recordText
       value: 
       objectReference: {fileID: 1901770802}
+    - target: {fileID: 2676978382274238491, guid: 45a4e4128829e554faef1c49ee00d6f3,
+        type: 3}
+      propertyPath: gameOverMenu
+      value: 
+      objectReference: {fileID: 1072384550}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45a4e4128829e554faef1c49ee00d6f3, type: 3}
 --- !u!1 &177469489
@@ -2994,7 +2999,7 @@ GameObject:
   - component: {fileID: 1340000023}
   m_Layer: 0
   m_Name: Lanes
-  m_TagString: Untagged
+  m_TagString: Lane
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

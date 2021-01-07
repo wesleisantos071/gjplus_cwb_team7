@@ -70,16 +70,20 @@ public class PlayerMovementHandler : MonoBehaviour {
     private void StartMovement() {
         canMove = true;
         elapsedTime = 0f;
+        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+        foreach (GameObject water in waterLevels) {
+            water.SetActive(true);
+        }
     }
 
     private void StopMovement() {
         canMove = false;
+        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionY;
         AudioHandler.instance.Play("Crash");
         AudioHandler.instance.StopWaterJet();
         onPlayerDie?.Invoke();
     }
-
-
 
     private void DrainWaterLevelsAndStop() {
         AudioHandler.instance.Play("FireEnd");

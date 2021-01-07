@@ -45,8 +45,20 @@ public class PlayerAnimationHandler : MonoBehaviour {
         copyBody.transform.position = originalBody.transform.position;
         copyBody.transform.parent = null;
         originalBody.SetActive(false);
-        copyBody.GetComponent<MeshRenderer>().material = ashMaterial;
+        foreach (Transform childT in copyBody.transform) {
+            GameObject go = childT.gameObject;
+            if (go.CompareTag("PlayerPart")) {
+                MeshRenderer renderer = go.GetComponent<MeshRenderer>();
+                if (renderer != null) {
+                    renderer.material = ashMaterial;
+                }
+            }
+        }
         Rigidbody rb = copyBody.GetComponent<Rigidbody>();
+        GameObject[] waterStacks = GameObject.FindGameObjectsWithTag("WaterStack");
+        foreach (GameObject go in waterStacks) {
+            go.SetActive(false);
+        }
         Destroy(rb);
         Destroy(copyBody, 2);
     }
