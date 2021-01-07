@@ -12,6 +12,7 @@ TagManager:
   - Lane
   - PlayerPart
   - Body
+  - WaterStack
   layers:
   - Default
   - TransparentFX
