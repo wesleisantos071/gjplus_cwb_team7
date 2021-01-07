@@ -13,6 +13,11 @@ public class ObjectFollowHandler : MonoBehaviour {
         offset = target.transform.position - transform.position;
     }
 
+    public void SetTarget(GameObject go) {
+        target = go;
+        offset = target.transform.position - transform.position;
+    }
+
     private void Update() {
         Vector3 tgtPos = target.transform.position;
         Vector3 futurePos = transform.position;

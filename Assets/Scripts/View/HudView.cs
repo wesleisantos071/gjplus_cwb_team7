@@ -10,7 +10,7 @@ public class HudView : MonoBehaviour {
     public TextMeshProUGUI currentScoreText;
     public TextMeshProUGUI gameoverScoreText;
     public GameObject mainMenu;
-    public GameObject endScreen;
+    public GameObject gameOverMenu;
 
     public TextMeshProUGUI mainMenuCash;
     public TextMeshProUGUI mainMenuHighScore;
@@ -25,14 +25,15 @@ public class HudView : MonoBehaviour {
     }
 
     private void Start() {
-        ReloadHandler.instance.onClickPlay += HideMainMenu;
+        ReloadHandler.instance.onClickPlay += HideMenus;
         PlayerMovementHandler.instance.onPlayerDie += ShowEnding;
         mainMenuCash.text = DataHandler.instance.playerCash.ToString();
         mainMenuHighScore.text = DataHandler.instance.highScore.ToString();
     }
 
-    private void HideMainMenu() {
+    private void HideMenus() {
         mainMenu.SetActive(false);
+        gameOverMenu.SetActive(false);
     }
 
     void ShowEnding() {
@@ -52,11 +53,11 @@ public class HudView : MonoBehaviour {
     IEnumerator DelayedGameover() {
         yield return new WaitForSeconds(2);
         gameoverScoreText.text = currentScoreText.text;
-        endScreen.SetActive(true);
+        gameOverMenu.SetActive(true);
     }
 
     private void OnDestroy() {
-        ReloadHandler.instance.onClickPlay -= HideMainMenu;
+        ReloadHandler.instance.onClickPlay -= HideMenus;
         PlayerMovementHandler.instance.onPlayerDie -= ShowEnding;
     }
 
