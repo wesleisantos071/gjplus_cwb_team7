@@ -16,6 +16,7 @@ public class HudController : MonoBehaviour {
         //currentCash = dataHandler.playerCash;
         view.UpdateCash(currentCash);
         PlayerParticleHandler.instance.onFireExtinct += IncreaseCash;
+        ReloadHandler.instance.onClickPlay += ResetCash;
     }
 
     public void IncreaseCash() {
@@ -25,7 +26,13 @@ public class HudController : MonoBehaviour {
         view.UpdateCash(currentCash);
     }
 
+    public void ResetCash() {
+        currentCash = 0;
+        view.UpdateCash(currentCash);
+    }
+
     private void OnDestroy() {
         PlayerParticleHandler.instance.onFireExtinct -= IncreaseCash;
+        ReloadHandler.instance.onClickPlay -= ResetCash;
     }
 }

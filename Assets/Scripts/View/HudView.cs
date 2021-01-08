@@ -15,8 +15,11 @@ public class HudView : MonoBehaviour {
     public TextMeshProUGUI mainMenuCash;
     public TextMeshProUGUI mainMenuHighScore;
 
+    public GameObject scorePanel;
+
     public TextMeshProUGUI recordText;
     public TextMeshProUGUI newRecordText;
+    public TextMeshProUGUI recordCounter;
 
     private void Awake() {
         if (instance == null) {
@@ -34,6 +37,7 @@ public class HudView : MonoBehaviour {
     private void HideMenus() {
         mainMenu.SetActive(false);
         gameOverMenu.SetActive(false);
+        scorePanel.SetActive(true);
     }
 
     void ShowEnding() {
@@ -53,6 +57,8 @@ public class HudView : MonoBehaviour {
     IEnumerator DelayedGameover() {
         yield return new WaitForSeconds(2);
         gameoverScoreText.text = currentScoreText.text;
+        recordCounter.text = DataHandler.instance.highScore.ToString();
+        scorePanel.SetActive(false);
         gameOverMenu.SetActive(true);
     }
 

@@ -8,6 +8,7 @@ public class PlatformMarkNotifyHandler : MonoBehaviour {
 
     private void Start() {
         platformMarkers = new Queue<GameObject>();
+        Debug.Log("Adding listener to onCreatePlatform on instance of PlatformController:" + PlatformController.instance);
         PlatformController.instance.onCreatePlaform += AddPlatformMarker;
     }
 
@@ -21,7 +22,7 @@ public class PlatformMarkNotifyHandler : MonoBehaviour {
 
     private void Update() {
         float currentZ = transform.position.z;
-        if (platformMarkers.Count>0) {
+        if (platformMarkers.Count > 0) {
             GameObject nextMarker = platformMarkers.Peek();
             if (currentZ > nextMarker.transform.position.z) {
                 platformMarkers.Dequeue();
