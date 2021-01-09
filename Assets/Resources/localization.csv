@@ -11,3 +11,23 @@ _author,Author,Autor
 _disclaimer_txt,This game was developed as a final project of the Unity Development course at Gamescola,Este jogo foi desenvolvido como projeto final do curso de Desenvolvimento de jogos em Unity na Gamescola
 _sfx,Sound Effects,Efeitos Sonóros
 _art,Art,Arte
+_ach_t_f-5_1,Soldier,Soldado
+_ach_d_f-5_1,Put out 5 fires,Apague 5 fogos
+_ach_t_f-10_2,Cable,Cabo
+_ach_d_f-10_2,Put out 10 fires,Apague 10 fogos
+_ach_t_f-15_3,Sergeant,Sargento
+_ach_d_f-15_3,Put out 15 fires,Apague 15 fogos
+_ach_t_f-20_4,Warrant Officer,Subtenente
+_ach_d_f-20_4,Put out 20 fires,Apague 20 fogos
+_ach_t_f-30_5,Lieutenant,Tenente
+_ach_d_f-30_5,Put out 30 fires,Apague 30 fogos
+_ach_t_f-40_6,Captain,Capitão
+_ach_d_f-40_6,Put out 40 fires,Apague 40 fogos
+_ach_t_f-80_7,Major,Major
+_ach_d_f-80_7,Put out 80 fires,Apague 80 fogos
+_ach_t_f-160_8,Lieutenant Colonel,Tenente-coronel
+_ach_d_f-160_8,Put out 160 fires,Apague 160 fogos
+_ach_t_f-320_9,Colonel,Coronel
+_ach_d_f-320_9,Put out 320 fires,Apague 320 fogos
+_ach_t_f-500_10,General,General
+_ach_d_f-500_10,Put out 500 fires,Apague 500 fogos

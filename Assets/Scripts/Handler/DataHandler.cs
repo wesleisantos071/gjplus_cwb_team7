@@ -8,14 +8,19 @@ public class DataHandler : MonoBehaviour {
     public static DataHandler instance;
 
     //Player Properties
-    string PLAYER_CASH = "PlayerCash";
-    public int playerCash;
-    string HIGH_SCORE = "HighScore";
-    public int highScore;
+    string KEY_PLAYER_CASH = "PlayerCash";
+    public int playerCash = 0;
+    string KEY_HIGH_SCORE = "HighScore";
+    public int highScore = 0;
 
-    public bool musicEnabled;
-    public bool soundEnabled;
+    string KEY_MUSIC = "MusicEnabled";
+    public bool musicEnabled = true;
+    string KEY_SOUND = "SoundEnabled";
+    public bool soundEnabled = true;
+    string KEY_LANG = "Language";
     public LocalizationSystem.Language selectedLanguage;
+    string KEY_ACHIEVEMENT_FIRE_INDEX = "AchievementFireIndex";
+    public int fireAchievementIndex = 0;
 
     public Action onResetHighScore;
 
@@ -31,18 +36,15 @@ public class DataHandler : MonoBehaviour {
     }
 
     private void LoadPlayerProperties() {
-        if (PlayerPrefs.HasKey(PLAYER_CASH)) {
-            playerCash = PlayerPrefs.GetInt(PLAYER_CASH);
-            highScore = PlayerPrefs.GetInt(HIGH_SCORE);
-        } else {
-            playerCash = 0;
-            highScore = 0;
+        if (PlayerPrefs.HasKey(KEY_PLAYER_CASH)) {
+            playerCash = PlayerPrefs.GetInt(KEY_PLAYER_CASH);
+            highScore = PlayerPrefs.GetInt(KEY_HIGH_SCORE);
         }
     }
 
     private void LoadSettings() {
         selectedLanguage = LocalizationSystem.Language.English;
-        string langSaved = PlayerPrefs.GetString("Language", null);
+        string langSaved = PlayerPrefs.GetString(KEY_LANG, null);
         if (langSaved != null) {
             foreach (LocalizationSystem.Language lang in Enum.GetValues(typeof(LocalizationSystem.Language))) {
                 if (lang.ToString().Equals(langSaved)) {
@@ -51,22 +53,27 @@ public class DataHandler : MonoBehaviour {
                 }
             }
         }
-        if (PlayerPrefs.HasKey("MusicEnabled")) {
-            musicEnabled = PlayerPrefs.GetInt("MusicEnabled") == 1 ? true : false;
-            soundEnabled = PlayerPrefs.GetInt("SoundEnabled") == 1 ? true : false;
-        } else {
-            musicEnabled = true;
-            soundEnabled = true;
-            Save();
+        if (PlayerPrefs.HasKey(KEY_MUSIC)) {
+            musicEnabled = PlayerPrefs.GetInt(KEY_MUSIC) == 1 ? true : false;
+            soundEnabled = PlayerPrefs.GetInt(KEY_SOUND) == 1 ? true : false;
+        }
+        if (PlayerPrefs.HasKey(KEY_ACHIEVEMENT_FIRE_INDEX)) {
+            fireAchievementIndex = PlayerPrefs.GetInt(KEY_ACHIEVEMENT_FIRE_INDEX);
         }
     }
 
     private void Save() {
-        PlayerPrefs.SetInt(PLAYER_CASH, playerCash);
-        PlayerPrefs.SetInt(HIGH_SCORE, highScore);
-        PlayerPrefs.SetString("Language", selectedLanguage.ToString());
-        PlayerPrefs.SetInt("MusicEnabled", musicEnabled ? 1 : 0);
-        PlayerPrefs.SetInt("SoundEnabled", soundEnabled ? 1 : 0);
+        PlayerPrefs.SetInt(KEY_PLAYER_CASH, playerCash);
+        PlayerPrefs.SetInt(KEY_HIGH_SCORE, highScore);
+        PlayerPrefs.SetString(KEY_LANG, selectedLanguage.ToString());
+        PlayerPrefs.SetInt(KEY_MUSIC, musicEnabled ? 1 : 0);
+        PlayerPrefs.SetInt(KEY_SOUND, soundEnabled ? 1 : 0);
+        PlayerPrefs.SetInt(KEY_ACHIEVEMENT_FIRE_INDEX, fireAchievementIndex);
+    }
+
+    internal void SetFireAchievementIndex(int newVal) {
+        fireAchievementIndex = newVal;
+        Save();
     }
 
     public void IncreaseCash(int amount) {
@@ -94,6 +101,8 @@ public class DataHandler : MonoBehaviour {
 
     public void ResetHighScore() {
         highScore = 0;
+        fireAchievementIndex = 0;
+        playerCash = 0;
         Save();
         onResetHighScore?.Invoke();
     }

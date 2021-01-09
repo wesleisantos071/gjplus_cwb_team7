@@ -21,6 +21,12 @@ public class HudView : MonoBehaviour {
     public TextMeshProUGUI newRecordText;
     public TextMeshProUGUI recordCounter;
 
+    public GameObject achievementTitle;
+    public GameObject achievementDescription;
+    public GameObject achievementBackground;
+
+    public int achievementMessageTime = 3;
+
     private void Awake() {
         if (instance == null) {
             instance = this;
@@ -60,6 +66,22 @@ public class HudView : MonoBehaviour {
         recordCounter.text = DataHandler.instance.highScore.ToString();
         scorePanel.SetActive(false);
         gameOverMenu.SetActive(true);
+    }
+
+    public void ShowAchievement(Achievement achievement) {
+        StartCoroutine(ShowAchievementMessage(achievement));
+    }
+
+    IEnumerator ShowAchievementMessage(Achievement achievement) {
+        achievementTitle.GetComponent<TextMeshProUGUI>().text = LocalizationSystem.GetLocalizedValue(achievement.achievementTitle);
+        achievementTitle.SetActive(true);
+        achievementDescription.GetComponent<TextMeshProUGUI>().text = LocalizationSystem.GetLocalizedValue(achievement.achievmentDescription);
+        achievementDescription.SetActive(true);
+        achievementBackground.SetActive(true);
+        yield return new WaitForSeconds(achievementMessageTime);
+        achievementTitle.SetActive(false);
+        achievementDescription.SetActive(false);
+        achievementBackground.SetActive(false);
     }
 
     private void OnDestroy() {

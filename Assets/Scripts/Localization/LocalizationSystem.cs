@@ -54,4 +54,9 @@ public class LocalizationSystem : MonoBehaviour {
         return value;
     }
 
+    public static ICollection GetKeys() {
+        if (!isInit) { Init(); }
+        return localizedEn.Keys;
+    }
+
 }
