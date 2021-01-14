@@ -47,7 +47,6 @@ public class HudController : MonoBehaviour {
                 fireAchievements.Add(achievement);
             }
         }
-        Debug.Log("Achievement in place: " + fireAchievements[fireAchievementIndex].targetCount);
     }
 
     private void CheckAchievements() {
