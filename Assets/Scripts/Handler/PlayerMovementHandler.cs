@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class PlayerMovementHandler : MonoBehaviour {
     public static PlayerMovementHandler instance;
     Rigidbody rb;
+    private float initialSpeed;
     public float moveSpeed = 5;
     public float smoothSpeed = .3f;
     public float jumpSpeed = 6;
@@ -40,6 +41,7 @@ public class PlayerMovementHandler : MonoBehaviour {
     }
 
     private void Start() {
+        initialSpeed = moveSpeed;
         AudioHandler.instance.StopWaterJet();
         rb = GetComponent<Rigidbody>();
         PlayerCollisionHandler.instance.onHitTree += StopMovement;
@@ -70,6 +72,7 @@ public class PlayerMovementHandler : MonoBehaviour {
     private void StartMovement() {
         GetComponent<Rigidbody>().constraints &= RigidbodyConstraints.None;
         GetComponent<Rigidbody>().constraints &= RigidbodyConstraints.FreezeRotation;
+        moveSpeed = initialSpeed;
         canMove = true;
         elapsedTime = 0f;
         foreach (GameObject water in waterLevels) {
