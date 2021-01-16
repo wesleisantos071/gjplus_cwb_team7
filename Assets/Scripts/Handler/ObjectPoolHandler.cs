@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ObjectPoolHandler : MonoBehaviour {
 
+    private GameObject playerRef;
+
     [System.Serializable]
     public class Pool {
         public string tag;
@@ -19,6 +21,24 @@ public class ObjectPoolHandler : MonoBehaviour {
         if (instance == null) {
             instance = this;
         }
+        PopulateDictionary();
+    }
+
+    private void Start() {
+        playerRef = GameObject.FindGameObjectWithTag("Player");
+    }
+
+    public void ResetPool() {
+        GameObject[] platformsInPool = GameObject.FindGameObjectsWithTag("PlatformInPool");
+        Debug.Log("found some platforms:" + platformsInPool.Length);
+        int max = platformsInPool.Length;
+        for (int i = 0; i < max; i++) {
+            Destroy(platformsInPool[i]);
+        }
+        PopulateDictionary();
+    }
+
+    private void PopulateDictionary() {
         poolDictionary = new Dictionary<string, Queue<GameObject>>();
         foreach (Pool pool in pools) {
             Queue<GameObject> objectPool = new Queue<GameObject>();
@@ -33,14 +53,34 @@ public class ObjectPoolHandler : MonoBehaviour {
 
     public GameObject SpawnFromPool(string tag, Vector3 pos, Quaternion rotation) {
         if (poolDictionary.ContainsKey(tag)) {
-            GameObject go = poolDictionary[tag].Dequeue();
-            go.SetActive(true);
-            go.transform.position = pos;
-            go.transform.rotation = rotation;
-            poolDictionary[tag].Enqueue(go);
+            Queue<GameObject> objQueue = poolDictionary[tag];
+
+            int attempt = 10;
+            GameObject go = null;
+            for (int i = 0; i < attempt; i++) {
+                go = objQueue.Dequeue();
+                if (IsBehindPlayer(go.transform.position)) {
+                    go.SetActive(true);
+                    go.transform.position = pos;
+                    go.transform.rotation = rotation;
+                    poolDictionary[tag].Enqueue(go);
+                    break;
+                } else {
+                    Debug.Log("Could not find a platform behind the player for tag:" + tag);
+                    poolDictionary[tag].Enqueue(go);
+                }
+            }
             return go;
         }
         Debug.LogError("No entry in dictionary for tag:" + tag);
         return null;
+    }
+
+    private bool IsBehindPlayer(Vector3 targetPos) {
+        if (playerRef.transform.position.z < 4) {
+            return true;
+        } else {
+            return playerRef.transform.position.z > (targetPos.z + PlatformController.instance.platformSize);
+        }
     }
 }

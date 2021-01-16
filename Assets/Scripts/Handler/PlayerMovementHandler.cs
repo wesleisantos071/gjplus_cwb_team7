@@ -23,6 +23,7 @@ public class PlayerMovementHandler : MonoBehaviour {
     protected Vector3 swipeEndMarker = Vector3.zero;
     public float minDistance = 20f;
     public Action onPlayerDie;
+    public Action onPlayerStartMove;
 
     float elapsedTime;
     public float timeToAccelerate;
@@ -72,8 +73,10 @@ public class PlayerMovementHandler : MonoBehaviour {
     private void StartMovement() {
         GetComponent<Rigidbody>().constraints &= RigidbodyConstraints.None;
         GetComponent<Rigidbody>().constraints &= RigidbodyConstraints.FreezeRotation;
+        transform.rotation = new Quaternion(0, 0, 0, 0);
         moveSpeed = initialSpeed;
         canMove = true;
+        onPlayerStartMove?.Invoke();
         elapsedTime = 0f;
         foreach (GameObject water in waterLevels) {
             water.SetActive(true);
@@ -95,6 +98,7 @@ public class PlayerMovementHandler : MonoBehaviour {
         }
         AudioHandler.instance.StopWaterJet();
         canMove = false;
+        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         onPlayerDie?.Invoke();
     }
 

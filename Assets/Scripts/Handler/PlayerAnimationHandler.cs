@@ -14,9 +14,7 @@ public class PlayerAnimationHandler : MonoBehaviour {
     }
 
     private void OnHitTree() {
-        GameObject copyBody = GameObject.Instantiate(originalBody);
-        copyBody.transform.position = originalBody.transform.position;
-        copyBody.transform.parent = null;
+        GameObject copyBody = CreateFakePlayerBody();
         originalBody.SetActive(false);
         List<GameObject> playerParts = new List<GameObject>();
         foreach (Transform childT in copyBody.transform) {
@@ -41,9 +39,7 @@ public class PlayerAnimationHandler : MonoBehaviour {
     }
 
     private void OnHitFire() {
-        GameObject copyBody = GameObject.Instantiate(originalBody);
-        copyBody.transform.position = originalBody.transform.position;
-        copyBody.transform.parent = null;
+        GameObject copyBody = CreateFakePlayerBody();
         originalBody.SetActive(false);
         foreach (Transform childT in copyBody.transform) {
             GameObject go = childT.gameObject;
@@ -61,6 +57,13 @@ public class PlayerAnimationHandler : MonoBehaviour {
         }
         Destroy(rb);
         Destroy(copyBody, 2);
+    }
+
+    private GameObject CreateFakePlayerBody() {
+        GameObject copyBody = GameObject.Instantiate(originalBody);
+        copyBody.transform.position = originalBody.transform.position;
+        copyBody.transform.localScale = originalBody.transform.parent.transform.localScale;
+        return copyBody;
     }
 
     private void OnDestroy() {
