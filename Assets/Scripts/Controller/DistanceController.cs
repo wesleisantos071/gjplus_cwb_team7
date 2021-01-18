@@ -10,6 +10,7 @@ public class DistanceController : MonoBehaviour {
     private float lastMark;
     private float totalDistance;
     private bool canMonitor = false;
+    private GameObject playerRef;
 
     private void Awake() {
         if (instance == null) {
@@ -21,6 +22,7 @@ public class DistanceController : MonoBehaviour {
     private void Start() {
         PlayerMovementHandler.instance.onPlayerStartMove += StartMonitor;
         PlayerMovementHandler.instance.onPlayerDie += StopMonitor;
+        playerRef = GameObject.FindGameObjectWithTag("Player");
     }
 
     void StopMonitor() {
@@ -35,10 +37,10 @@ public class DistanceController : MonoBehaviour {
 
     void Update() {
         if (canMonitor) {
-            totalDistance = transform.position.z;
+            totalDistance = playerRef.transform.position.z;
             if (transform.position.z - lastMark > distanceToMonitor) {
                 onReachDistance?.Invoke();
-                lastMark = transform.position.z;
+                lastMark = playerRef.transform.position.z;
             }
         }
     }

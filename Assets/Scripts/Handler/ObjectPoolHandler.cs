@@ -77,7 +77,7 @@ public class ObjectPoolHandler : MonoBehaviour {
     }
 
     private bool IsBehindPlayer(Vector3 targetPos) {
-        if (playerRef.transform.position.z < 4) {
+        if (playerRef.transform.position.z < PlatformController.instance.platformSize) {//check if player is on the 1st platform
             return true;
         } else {
             return playerRef.transform.position.z > (targetPos.z + PlatformController.instance.platformSize);
