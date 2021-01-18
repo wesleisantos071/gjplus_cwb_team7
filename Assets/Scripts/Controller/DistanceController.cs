@@ -6,7 +6,7 @@ using UnityEngine;
 public class DistanceController : MonoBehaviour {
     public static DistanceController instance;
     public Action onReachDistance;
-    public float distanceToMonitor;
+    private float distanceToMonitor;
     private float lastMark;
     private float totalDistance;
     private bool canMonitor = false;
@@ -23,6 +23,7 @@ public class DistanceController : MonoBehaviour {
         PlayerMovementHandler.instance.onPlayerStartMove += StartMonitor;
         PlayerMovementHandler.instance.onPlayerDie += StopMonitor;
         playerRef = GameObject.FindGameObjectWithTag("Player");
+        distanceToMonitor = PlatformController.instance.platformSize;
     }
 
     void StopMonitor() {
