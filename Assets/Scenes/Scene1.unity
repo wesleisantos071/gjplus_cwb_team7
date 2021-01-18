@@ -857,7 +857,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13ea63d53d3cb48148249c8dc5dff2a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceToMonitor: 14
 --- !u!4 &127512105
 Transform:
   m_ObjectHideFlags: 0
@@ -4662,7 +4661,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lastPlatform: {fileID: 1005212838}
   platformSize: 29.5
-  batchSize: 1
+  batchSize: 3
 --- !u!1 &1570683004
 GameObject:
   m_ObjectHideFlags: 0

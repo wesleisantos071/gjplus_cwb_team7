@@ -51,36 +51,26 @@ public class ObjectPoolHandler : MonoBehaviour {
         }
     }
 
-    private bool isSpawning = false;
-
     public GameObject SpawnFromPool(string tag, Vector3 pos, Quaternion rotation) {
-        if (isSpawning) {
-            return null;
-        } else {
-            isSpawning = true;
-            if (poolDictionary.ContainsKey(tag)) {
-                Queue<GameObject> objQueue = poolDictionary[tag];
-                int attempt = objQueue.Count;
-                GameObject go = null;
-                for (int i = 0; i < attempt; i++) {
-                    go = objQueue.Dequeue();
-                    if (IsBehindPlayer(go.transform.position)) {
-                        go.SetActive(true);
-                        go.transform.position = pos;
-                        go.transform.rotation = rotation;
-                        poolDictionary[tag].Enqueue(go);
-                        Debug.Log("Spawning platform('" + tag + "') on:" + pos.z);
-                        break;
-                    } else {
-                        //Debug.Log("Could not find a platform behind the player for tag:" + tag);
-                        poolDictionary[tag].Enqueue(go);
-                    }
-                }
-                isSpawning = false;
+        if (poolDictionary.ContainsKey(tag)) {
+            Queue<GameObject> objQueue = poolDictionary[tag];
+            GameObject go = null;
+            go = objQueue.Dequeue();
+            if (IsBehindPlayer(go.transform.position)) {
+                go.SetActive(true);
+                go.transform.position = pos;
+                go.transform.rotation = rotation;
+                poolDictionary[tag].Enqueue(go);
+                Debug.Log("Spawn finished:" + go.transform.position.z);
                 return go;
+            } else {
+                //Debug.Log("Could not find a platform behind the player for tag:" + tag);
+                poolDictionary[tag].Enqueue(go);
+                return null;
             }
+
+        } else {
             Debug.LogError("No entry in dictionary for tag:" + tag);
-            isSpawning = false;
             return null;
         }
     }

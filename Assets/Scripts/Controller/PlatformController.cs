@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlatformController : MonoBehaviour {
     public static PlatformController instance;
-    public GameObject lastPlatform;
+    private GameObject lastPlatform;
+    [SerializeField]
     private GameObject firstPlatform;
-    public System.Action<GameObject> onCreatePlaform;
     public float platformSize;
     List<string> platformTags;
     ObjectPoolHandler platformPooler;
@@ -16,7 +16,7 @@ public class PlatformController : MonoBehaviour {
         if (instance == null) {
             instance = this;
         }
-        firstPlatform = lastPlatform; // in the first run, the lastplatform is the first one
+        lastPlatform = firstPlatform; // in the first run, the lastplatform is the first one
     }
 
     private void Start() {
@@ -24,24 +24,22 @@ public class PlatformController : MonoBehaviour {
         platformTags = new List<string>(platformPooler.poolDictionary.Keys);
         PlayerMovementHandler.instance.onPlayerDie += ResetLastPlatform;
         DistanceController.instance.onReachDistance += CreateMorePlatforms;
-        CreateMorePlatforms();
+        ReloadHandler.instance.onClickPlay += CreateMorePlatforms;
+        ReloadHandler.instance.onClickRetry += CreateMorePlatforms;
     }
 
 
     private void CreateMorePlatforms() {
-        StartCoroutine(SchedulePlatformCreation());
-    }
-
-    IEnumerator SchedulePlatformCreation() {
-        yield return new WaitForSeconds(0.01f);
         for (int i = 0; i < batchSize; i++) {
             int tagIndex = UnityEngine.Random.Range(0, platformTags.Count);
             string tagName = platformTags[tagIndex];
             Vector3 pos = lastPlatform.transform.position;
             pos.z = pos.z + platformSize;
+            Debug.Log("Calling spawn:" + pos.z);
             GameObject go = platformPooler.SpawnFromPool(tagName, pos, Quaternion.identity);
-            lastPlatform = go;
-            onCreatePlaform?.Invoke(go);
+            if (go != null) {
+                lastPlatform = go;
+            }
         }
     }
 
@@ -52,5 +50,7 @@ public class PlatformController : MonoBehaviour {
     private void OnDestroy() {
         PlayerMovementHandler.instance.onPlayerDie -= ResetLastPlatform;
         DistanceController.instance.onReachDistance -= CreateMorePlatforms;
+        ReloadHandler.instance.onClickPlay -= CreateMorePlatforms;
+        ReloadHandler.instance.onClickRetry -= CreateMorePlatforms;
     }
 }
