@@ -39,7 +39,6 @@ public class PlatformController : MonoBehaviour {
             string tagName = platformTags[tagIndex];
             Vector3 pos = lastPlatform.transform.position;
             pos.z = pos.z + platformSize;
-            Debug.Log("Spawning platform on:" + pos.z);
             GameObject go = platformPooler.SpawnFromPool(tagName, pos, Quaternion.identity);
             lastPlatform = go;
             onCreatePlaform?.Invoke(go);
@@ -47,7 +46,6 @@ public class PlatformController : MonoBehaviour {
     }
 
     private void ResetLastPlatform() {
-        platformPooler.ResetPool();
         lastPlatform = firstPlatform;
     }
 

@@ -26,11 +26,11 @@ public class ObjectPoolHandler : MonoBehaviour {
 
     private void Start() {
         playerRef = GameObject.FindGameObjectWithTag("Player");
+        ReloadHandler.instance.onClickRetry += ResetPool;
     }
 
     public void ResetPool() {
         GameObject[] platformsInPool = GameObject.FindGameObjectsWithTag("PlatformInPool");
-        Debug.Log("found some platforms:" + platformsInPool.Length);
         int max = platformsInPool.Length;
         for (int i = 0; i < max; i++) {
             Destroy(platformsInPool[i]);
@@ -66,7 +66,7 @@ public class ObjectPoolHandler : MonoBehaviour {
                     poolDictionary[tag].Enqueue(go);
                     break;
                 } else {
-                    Debug.Log("Could not find a platform behind the player for tag:" + tag);
+                    //Debug.Log("Could not find a platform behind the player for tag:" + tag);
                     poolDictionary[tag].Enqueue(go);
                 }
             }
@@ -82,5 +82,9 @@ public class ObjectPoolHandler : MonoBehaviour {
         } else {
             return playerRef.transform.position.z > (targetPos.z + PlatformController.instance.platformSize);
         }
+    }
+
+    private void OnDestroy() {
+        ReloadHandler.instance.onClickRetry -= ResetPool;
     }
 }

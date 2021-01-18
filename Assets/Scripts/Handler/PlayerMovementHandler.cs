@@ -50,6 +50,7 @@ public class PlayerMovementHandler : MonoBehaviour {
         PlayerCollisionHandler.instance.onHitWater += IncreaseWaterLevel;
         PlayerCollisionHandler.instance.onHitLane += PositionInLane;
         ReloadHandler.instance.onClickPlay += StartMovement;
+        ReloadHandler.instance.onClickRetry += StartMovement;
     }
 
     private void PositionInLane(GameObject lane) {
@@ -108,6 +109,7 @@ public class PlayerMovementHandler : MonoBehaviour {
         PlayerCollisionHandler.instance.onHitWater -= IncreaseWaterLevel;
         PlayerCollisionHandler.instance.onHitLane -= PositionInLane;
         ReloadHandler.instance.onClickPlay -= StartMovement;
+        ReloadHandler.instance.onClickRetry -= StartMovement;
     }
 
     void Update() {

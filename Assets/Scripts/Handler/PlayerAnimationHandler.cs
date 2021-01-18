@@ -10,7 +10,7 @@ public class PlayerAnimationHandler : MonoBehaviour {
         originalBody = GameObject.FindGameObjectWithTag("Body");
         PlayerCollisionHandler.instance.onHitTree += OnHitTree;
         PlayerCollisionHandler.instance.onHitFire += OnHitFire;
-        ReloadHandler.instance.onClickPlay += EnableBody;
+        ReloadHandler.instance.onClickRetry += EnableBody;
     }
 
     private void OnHitTree() {
@@ -69,7 +69,7 @@ public class PlayerAnimationHandler : MonoBehaviour {
     private void OnDestroy() {
         PlayerCollisionHandler.instance.onHitTree -= OnHitTree;
         PlayerCollisionHandler.instance.onHitFire -= OnHitFire;
-        ReloadHandler.instance.onClickPlay -= EnableBody;
+        ReloadHandler.instance.onClickRetry -= EnableBody;
     }
 
 }

@@ -35,6 +35,7 @@ public class HudView : MonoBehaviour {
 
     private void Start() {
         ReloadHandler.instance.onClickPlay += HideMenus;
+        ReloadHandler.instance.onClickRetry += HideMenus;
         PlayerMovementHandler.instance.onPlayerDie += ShowEnding;
         mainMenuCash.text = DataHandler.instance.playerCash.ToString();
         mainMenuHighScore.text = DataHandler.instance.highScore.ToString();
@@ -86,6 +87,7 @@ public class HudView : MonoBehaviour {
 
     private void OnDestroy() {
         ReloadHandler.instance.onClickPlay -= HideMenus;
+        ReloadHandler.instance.onClickRetry -= HideMenus;
         PlayerMovementHandler.instance.onPlayerDie -= ShowEnding;
     }
 

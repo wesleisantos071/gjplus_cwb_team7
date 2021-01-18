@@ -8,6 +8,7 @@ public class ReloadHandler : MonoBehaviour {
 
     public static ReloadHandler instance;
     public Action onClickPlay;
+    public Action onClickRetry;
     public GameObject loadingScreen;
     public GameObject gameoverScreen;
 
@@ -18,14 +19,18 @@ public class ReloadHandler : MonoBehaviour {
     }
 
     public void OnClickPlay() {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        player.transform.position = new Vector3(0, 2.03f, 2.03f);
         AudioHandler.instance.StopWaterJet();
         onClickPlay?.Invoke();
     }
 
+    public void OnClickRetry() {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        player.transform.position = new Vector3(0, 2.03f, 0);
+        AudioHandler.instance.StopWaterJet();
+        onClickRetry?.Invoke();
+    }
+
     public void ReloadSandbox() {
-        //fazer isto quando apertar retry
         gameoverScreen.SetActive(false);
         loadingScreen.SetActive(true);
         SceneManager.LoadScene(0);

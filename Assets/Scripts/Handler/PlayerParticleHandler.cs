@@ -26,7 +26,7 @@ public class PlayerParticleHandler : MonoBehaviour {
     void Start() {
         PlayerMovementHandler.instance.onJump += StartWaterParticle;
         PlayerCollisionHandler.instance.onHitFire += TurnOnSmoke;
-        ReloadHandler.instance.onClickPlay += TurnOffSmoke;
+        ReloadHandler.instance.onClickRetry += TurnOffSmoke;
     }
 
     private void TurnOnSmoke() {
@@ -61,6 +61,7 @@ public class PlayerParticleHandler : MonoBehaviour {
     private void OnDestroy() {
         PlayerMovementHandler.instance.onJump -= StartWaterParticle;
         PlayerCollisionHandler.instance.onHitFire -= TurnOnSmoke;
+        ReloadHandler.instance.onClickRetry -= TurnOffSmoke;
     }
 
     private void FixedUpdate() {
