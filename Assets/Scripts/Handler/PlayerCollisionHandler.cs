@@ -20,6 +20,7 @@ public class PlayerCollisionHandler : MonoBehaviour {
     }
 
     private void OnTriggerEnter(Collider other) {
+        //Debug.Log("Colided with:" + other.name);
         if (other.gameObject.CompareTag("Tree") ||
             other.gameObject.CompareTag("Rock")) {
             onHitTree?.Invoke();

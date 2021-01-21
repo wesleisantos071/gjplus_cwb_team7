@@ -3,14 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DistanceController : MonoBehaviour {
-    public static DistanceController instance;
+public class PlayerDistanceController : MonoBehaviour {
+    public static PlayerDistanceController instance;
     public Action onReachDistance;
     private float distanceToMonitor;
     private float lastMark;
     private float totalDistance;
     private bool canMonitor = false;
-    private GameObject playerRef;
 
     private void Awake() {
         if (instance == null) {
@@ -22,7 +21,6 @@ public class DistanceController : MonoBehaviour {
     private void Start() {
         PlayerMovementHandler.instance.onPlayerStartMove += StartMonitor;
         PlayerMovementHandler.instance.onPlayerDie += StopMonitor;
-        playerRef = GameObject.FindGameObjectWithTag("Player");
         distanceToMonitor = PlatformController.instance.platformSize;
     }
 
@@ -38,15 +36,16 @@ public class DistanceController : MonoBehaviour {
 
     void Update() {
         if (canMonitor) {
-            totalDistance = playerRef.transform.position.z;
-            if (transform.position.z - lastMark > distanceToMonitor) {
+            totalDistance = transform.position.z;
+            if (totalDistance - lastMark > distanceToMonitor) {
                 onReachDistance?.Invoke();
-                lastMark = playerRef.transform.position.z;
+                lastMark = totalDistance;
             }
         }
     }
 
     private void OnDestroy() {
         PlayerMovementHandler.instance.onPlayerStartMove -= StartMonitor;
+        PlayerMovementHandler.instance.onPlayerDie -= StopMonitor;
     }
 }

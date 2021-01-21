@@ -30,6 +30,7 @@ public class ObjectPoolHandler : MonoBehaviour {
     }
 
     public void ResetPool() {
+        Debug.Log("Reseting pool...");
         GameObject[] platformsInPool = GameObject.FindGameObjectsWithTag("PlatformInPool");
         int max = platformsInPool.Length;
         for (int i = 0; i < max; i++) {
@@ -61,11 +62,12 @@ public class ObjectPoolHandler : MonoBehaviour {
                 go.transform.position = pos;
                 go.transform.rotation = rotation;
                 poolDictionary[tag].Enqueue(go);
-                Debug.Log("Spawn finished:" + go.transform.position.z);
+                Debug.Log("Returning platform:" + go.name);
                 return go;
             } else {
                 //Debug.Log("Could not find a platform behind the player for tag:" + tag);
                 poolDictionary[tag].Enqueue(go);
+                Debug.Log("Returning null");
                 return null;
             }
 
