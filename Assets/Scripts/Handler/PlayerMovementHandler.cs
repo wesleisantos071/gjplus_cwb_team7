@@ -89,6 +89,7 @@ public class PlayerMovementHandler : MonoBehaviour {
         GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         AudioHandler.instance.Play("Crash");
         AudioHandler.instance.StopWaterJet();
+        //Debug.Log("Player death by collision");
         onPlayerDie?.Invoke();
     }
 
@@ -100,6 +101,7 @@ public class PlayerMovementHandler : MonoBehaviour {
         AudioHandler.instance.StopWaterJet();
         canMove = false;
         GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+        //Debug.Log("Player death by fire");
         onPlayerDie?.Invoke();
     }
 

@@ -30,7 +30,12 @@ public class PlatformController : MonoBehaviour {
 
 
     private void CreateMorePlatforms() {
-        Debug.Log("last platform is:" + lastPlatform);
+        StartCoroutine(DelayedPlatformCreation());
+    }
+
+    IEnumerator DelayedPlatformCreation() {
+        yield return new WaitForSeconds(0.0001f);
+        //Debug.Log("last platform is:" + lastPlatform);
         for (int i = 0; i < batchSize; i++) {
             int tagIndex = UnityEngine.Random.Range(0, platformTags.Count);
             string tagName = platformTags[tagIndex];

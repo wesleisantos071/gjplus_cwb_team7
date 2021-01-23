@@ -23,8 +23,10 @@ public class PlayerCollisionHandler : MonoBehaviour {
         //Debug.Log("Colided with:" + other.name);
         if (other.gameObject.CompareTag("Tree") ||
             other.gameObject.CompareTag("Rock")) {
+            //Debug.Log("Player letal collision");
             onHitTree?.Invoke();
         } else if (other.CompareTag("Fire")) {
+            //Debug.Log("Player letal collision");
             onHitFire?.Invoke();
         } else if (other.CompareTag("Water")) {
             other.GetComponent<IDestructable>().SimulateDestruction();

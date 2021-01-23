@@ -62,12 +62,11 @@ public class ObjectPoolHandler : MonoBehaviour {
                 go.transform.position = pos;
                 go.transform.rotation = rotation;
                 poolDictionary[tag].Enqueue(go);
-                Debug.Log("Returning platform:" + go.name);
+                //Debug.Log("Returning platform:" + go.name);
                 return go;
             } else {
-                //Debug.Log("Could not find a platform behind the player for tag:" + tag);
                 poolDictionary[tag].Enqueue(go);
-                Debug.Log("Returning null");
+                //Debug.Log("Returning null");
                 return null;
             }
 
