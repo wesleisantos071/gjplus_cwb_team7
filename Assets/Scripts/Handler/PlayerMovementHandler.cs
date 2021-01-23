@@ -30,6 +30,8 @@ public class PlayerMovementHandler : MonoBehaviour {
     public float speedLimit;
     public float speedIncrease;
 
+    public int defaultPlayerWaterLevel = 3;
+
     enum direction {
         NONE,
         TO_LEFT,
@@ -79,8 +81,13 @@ public class PlayerMovementHandler : MonoBehaviour {
         canMove = true;
         onPlayerStartMove?.Invoke();
         elapsedTime = 0f;
+        int counter = 0;
         foreach (GameObject water in waterLevels) {
             water.SetActive(true);
+            counter++;
+            if (counter >= defaultPlayerWaterLevel) {
+                break;
+            }
         }
     }
 
