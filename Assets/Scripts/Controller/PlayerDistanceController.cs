@@ -6,16 +6,20 @@ using UnityEngine;
 public class PlayerDistanceController : MonoBehaviour {
     public static PlayerDistanceController instance;
     public Action onReachDistance;
+    public Action<int> onIncreaseDistance;
     private float distanceToMonitor;
     private float lastMark;
     private float totalDistance;
+    private int lastRoundedTotal;
     private bool canMonitor = false;
+
 
     private void Awake() {
         if (instance == null) {
             instance = this;
         }
         lastMark = 0;
+        lastRoundedTotal = 0;
     }
 
     private void Start() {
@@ -31,6 +35,7 @@ public class PlayerDistanceController : MonoBehaviour {
 
     private void StartMonitor() {
         lastMark = 0;
+        lastRoundedTotal = 0;
         canMonitor = true;
     }
 
@@ -40,6 +45,10 @@ public class PlayerDistanceController : MonoBehaviour {
             if (totalDistance - lastMark > distanceToMonitor) {
                 onReachDistance?.Invoke();
                 lastMark = totalDistance;
+            }
+            if (lastRoundedTotal < Convert.ToInt32(totalDistance)) {
+                lastRoundedTotal = Convert.ToInt32(totalDistance);
+                onIncreaseDistance?.Invoke(lastRoundedTotal);
             }
         }
     }

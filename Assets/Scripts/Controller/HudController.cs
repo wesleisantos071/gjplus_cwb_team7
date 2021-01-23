@@ -6,7 +6,7 @@ using UnityEngine;
 public class HudController : MonoBehaviour {
 
     HudView view;
-    int currentCash = 0;
+    int currentFire = 0;
     DataHandler dataHandler;
     GameObject achievementTitle;
     GameObject achievementDescription;
@@ -17,15 +17,22 @@ public class HudController : MonoBehaviour {
     void Start() {
         view = HudView.instance;
         dataHandler = DataHandler.instance;
-        view.UpdateCash(currentCash);
-        PlayerParticleHandler.instance.onFireExtinct += IncreaseCash;
-        ReloadHandler.instance.onClickRetry += ResetCash;
+        view.UpdateFire(currentFire);
+        PlayerParticleHandler.instance.onFireExtinct += IncreaseFire;
+        PlayerDistanceController.instance.onIncreaseDistance += IncreaseDistance;
+        ReloadHandler.instance.onClickRetry += ResetCounters;
         LoadAchievements();
     }
 
-    public void IncreaseCash() {
-        currentCash++;
-        view.UpdateCash(currentCash);
+    public void IncreaseFire() {
+        currentFire++;
+        view.UpdateFire(currentFire);
+        CheckAchievements();
+    }
+
+    public void IncreaseDistance(int currentDistance) {
+        currentDistance++;
+        view.UpdateDistance(currentDistance);
         CheckAchievements();
     }
 
@@ -51,7 +58,7 @@ public class HudController : MonoBehaviour {
 
     private void CheckAchievements() {
         FireExtinctAchievement achievement = fireAchievements[fireAchievementIndex];
-        bool achievementReached = currentCash == achievement.targetCount;
+        bool achievementReached = currentFire == achievement.targetCount;
         if (achievementReached) {
             view.ShowAchievement(achievement);
             if (fireAchievementIndex < fireAchievements.Count - 1) {
@@ -61,13 +68,13 @@ public class HudController : MonoBehaviour {
         }
     }
 
-    public void ResetCash() {
-        currentCash = 0;
-        view.UpdateCash(currentCash);
+    public void ResetCounters() {
+        currentFire = 0;
+        view.UpdateFire(currentFire);
     }
 
     private void OnDestroy() {
-        PlayerParticleHandler.instance.onFireExtinct -= IncreaseCash;
-        ReloadHandler.instance.onClickRetry -= ResetCash;
+        PlayerParticleHandler.instance.onFireExtinct -= IncreaseFire;
+        ReloadHandler.instance.onClickRetry -= ResetCounters;
     }
 }

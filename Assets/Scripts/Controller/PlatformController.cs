@@ -33,6 +33,8 @@ public class PlatformController : MonoBehaviour {
         StartCoroutine(DelayedPlatformCreation());
     }
 
+    //Criacao de platforms eh ativada pelo evento OnClickRetry, que tambem da um Reset no Pool.
+    //Este pequeno delay garante que as platforms serao criadas depois do reset do pool 
     IEnumerator DelayedPlatformCreation() {
         yield return new WaitForSeconds(0.0001f);
         //Debug.Log("last platform is:" + lastPlatform);

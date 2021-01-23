@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ResetScoreHandler : MonoBehaviour {
     public void OnResetHighScore() {
-        DataHandler.instance.ResetHighScore();
+        DataHandler.instance.ResetHighScores();
         transform.parent.gameObject.SetActive(false);
     }
 }

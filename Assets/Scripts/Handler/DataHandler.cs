@@ -10,8 +10,10 @@ public class DataHandler : MonoBehaviour {
     //Player Properties
     string KEY_PLAYER_CASH = "PlayerCash";
     public int playerCash = 0;
-    string KEY_HIGH_SCORE = "HighScore";
-    public int highScore = 0;
+    string KEY_FIRE_RECORD = "PlayerFireRecord";
+    public int fireRecord = 0;
+    string KEY_DISTANCE_RECORD = "PlayerDistanceRecord";
+    public int distanceRecord = 0;
 
     string KEY_MUSIC = "MusicEnabled";
     public bool musicEnabled = true;
@@ -22,7 +24,7 @@ public class DataHandler : MonoBehaviour {
     string KEY_ACHIEVEMENT_FIRE_INDEX = "AchievementFireIndex";
     public int fireAchievementIndex = 0;
 
-    public Action onResetHighScore;
+    public Action onResetHighScores;
 
     private void Awake() {
         instance = this;
@@ -38,7 +40,8 @@ public class DataHandler : MonoBehaviour {
     private void LoadPlayerProperties() {
         if (PlayerPrefs.HasKey(KEY_PLAYER_CASH)) {
             playerCash = PlayerPrefs.GetInt(KEY_PLAYER_CASH);
-            highScore = PlayerPrefs.GetInt(KEY_HIGH_SCORE);
+            fireRecord = PlayerPrefs.GetInt(KEY_FIRE_RECORD);
+            distanceRecord = PlayerPrefs.GetInt(KEY_DISTANCE_RECORD);
         }
     }
 
@@ -64,7 +67,8 @@ public class DataHandler : MonoBehaviour {
 
     private void Save() {
         PlayerPrefs.SetInt(KEY_PLAYER_CASH, playerCash);
-        PlayerPrefs.SetInt(KEY_HIGH_SCORE, highScore);
+        PlayerPrefs.SetInt(KEY_FIRE_RECORD, fireRecord);
+        PlayerPrefs.SetInt(KEY_DISTANCE_RECORD, distanceRecord);
         PlayerPrefs.SetString(KEY_LANG, selectedLanguage.ToString());
         PlayerPrefs.SetInt(KEY_MUSIC, musicEnabled ? 1 : 0);
         PlayerPrefs.SetInt(KEY_SOUND, soundEnabled ? 1 : 0);
@@ -90,21 +94,35 @@ public class DataHandler : MonoBehaviour {
      * return true if new highscore, false if not
      * 
      */
-    public bool SaveHighScore(int newScore) {
-        if (highScore < newScore) {
-            highScore = newScore;
+    public bool SaveFireRecord(int newScore) {
+        if (fireRecord < newScore) {
+            fireRecord = newScore;
             Save();
             return true;
         }
         return false;
     }
 
-    public void ResetHighScore() {
-        highScore = 0;
+    public void ResetHighScores() {
+        fireRecord = 0;
         fireAchievementIndex = 0;
+        distanceRecord = 0;
         playerCash = 0;
         Save();
-        onResetHighScore?.Invoke();
+        onResetHighScores?.Invoke();
+    }
+
+    /**
+     * return true if new playerFireRecord, false if not
+     * 
+     */
+    public bool SaveDistanceRecord(int newDistance) {
+        if (distanceRecord < newDistance) {
+            distanceRecord = newDistance;
+            Save();
+            return true;
+        }
+        return false;
     }
 
     public void SetSelectedLanguage(LocalizationSystem.Language language) {

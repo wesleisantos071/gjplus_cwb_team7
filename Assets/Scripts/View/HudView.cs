@@ -7,13 +7,15 @@ using UnityEngine.SceneManagement;
 
 public class HudView : MonoBehaviour {
     public static HudView instance;
-    public TextMeshProUGUI currentScoreText;
-    public TextMeshProUGUI gameoverScoreText;
+    public TextMeshProUGUI currentFireText;
+    public TextMeshProUGUI currentDistanceText;
+    public TextMeshProUGUI gameoverDistanceText;
+    public TextMeshProUGUI gameoverFireText;
     public GameObject mainMenu;
     public GameObject gameOverMenu;
 
-    public TextMeshProUGUI mainMenuCash;
-    public TextMeshProUGUI mainMenuHighScore;
+    public TextMeshProUGUI mainMenuFireRecord;
+    public TextMeshProUGUI mainMenuDistanceRecord;
 
     public GameObject scorePanel;
 
@@ -37,8 +39,8 @@ public class HudView : MonoBehaviour {
         ReloadHandler.instance.onClickPlay += HideMenus;
         ReloadHandler.instance.onClickRetry += HideMenus;
         PlayerMovementHandler.instance.onPlayerDie += ShowEnding;
-        mainMenuCash.text = DataHandler.instance.playerCash.ToString();
-        mainMenuHighScore.text = DataHandler.instance.highScore.ToString();
+        mainMenuFireRecord.text = DataHandler.instance.fireRecord.ToString();
+        mainMenuDistanceRecord.text = DataHandler.instance.distanceRecord.ToString();
     }
 
     private void HideMenus() {
@@ -48,9 +50,11 @@ public class HudView : MonoBehaviour {
     }
 
     void ShowEnding() {
-        int currentScore = Convert.ToInt32(currentScoreText.text);
-        DataHandler.instance.IncreaseCash(currentScore);
-        bool newHighScore = DataHandler.instance.SaveHighScore(currentScore);
+        int currentFire = Convert.ToInt32(currentFireText.text);
+        DataHandler.instance.IncreaseCash(currentFire);
+        DataHandler.instance.SaveFireRecord(currentFire);
+        int currentDistance = Convert.ToInt32(currentDistanceText.text);
+        bool newHighScore = DataHandler.instance.SaveDistanceRecord(currentDistance);
         if (newHighScore) {
             recordText.enabled = false;
             newRecordText.enabled = true;
@@ -63,8 +67,9 @@ public class HudView : MonoBehaviour {
 
     IEnumerator DelayedGameover() {
         yield return new WaitForSeconds(2);
-        gameoverScoreText.text = currentScoreText.text;
-        recordCounter.text = DataHandler.instance.highScore.ToString();
+        gameoverFireText.text = currentFireText.text;
+        gameoverDistanceText.text = currentDistanceText.text;
+        recordCounter.text = DataHandler.instance.distanceRecord.ToString();
         scorePanel.SetActive(false);
         gameOverMenu.SetActive(true);
     }
@@ -91,7 +96,11 @@ public class HudView : MonoBehaviour {
         PlayerMovementHandler.instance.onPlayerDie -= ShowEnding;
     }
 
-    public void UpdateCash(int currentScore) {
-        currentScoreText.text = currentScore.ToString();
+    public void UpdateFire(int currentScore) {
+        currentFireText.text = currentScore.ToString();
+    }
+
+    public void UpdateDistance(int currentDistance) {
+        currentDistanceText.text = currentDistance.ToString();
     }
 }

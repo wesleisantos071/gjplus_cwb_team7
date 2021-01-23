@@ -8,9 +8,9 @@ public class HighScoreObserver : MonoBehaviour {
 
     private void Start() {
         data = DataHandler.instance;
-        data.onResetHighScore += OnResetHighScore;
+        data.onResetHighScores += OnResetHighScore;
         TextMeshProUGUI text = GetComponent<TextMeshProUGUI>();
-        text.text = data.highScore.ToString();
+        text.text = data.fireRecord.ToString();
     }
 
     private void OnResetHighScore() {
@@ -19,6 +19,6 @@ public class HighScoreObserver : MonoBehaviour {
     }
 
     private void OnDestroy() {
-        data.onResetHighScore -= OnResetHighScore;
+        data.onResetHighScores -= OnResetHighScore;
     }
 }

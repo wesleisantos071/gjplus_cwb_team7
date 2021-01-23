@@ -30,7 +30,7 @@ public class ObjectPoolHandler : MonoBehaviour {
     }
 
     public void ResetPool() {
-        Debug.Log("Reseting pool...");
+        //Debug.Log("Reseting pool...");
         GameObject[] platformsInPool = GameObject.FindGameObjectsWithTag("PlatformInPool");
         int max = platformsInPool.Length;
         for (int i = 0; i < max; i++) {
