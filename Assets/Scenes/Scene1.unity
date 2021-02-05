@@ -3381,6 +3381,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1843626022820527720, guid: de8821f16b35aba4dbf0f1379a8c7f41,
+        type: 3}
+      propertyPath: sounds.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843626022820527720, guid: de8821f16b35aba4dbf0f1379a8c7f41,
+        type: 3}
+      propertyPath: sounds.Array.data[3].name
+      value: Bell
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843626022820527720, guid: de8821f16b35aba4dbf0f1379a8c7f41,
+        type: 3}
+      propertyPath: sounds.Array.data[3].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 37d5158271bc64ba7bb984ee69bfe4c8, type: 3}
+    - target: {fileID: 1843626022820527720, guid: de8821f16b35aba4dbf0f1379a8c7f41,
+        type: 3}
+      propertyPath: sounds.Array.data[3].volume
+      value: 0.201
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843626022820527720, guid: de8821f16b35aba4dbf0f1379a8c7f41,
+        type: 3}
+      propertyPath: sounds.Array.data[3].pitch
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8086279473955553112, guid: de8821f16b35aba4dbf0f1379a8c7f41,
         type: 3}
       propertyPath: m_LocalPosition.x
