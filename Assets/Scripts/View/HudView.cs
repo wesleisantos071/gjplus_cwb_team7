@@ -29,6 +29,10 @@ public class HudView : MonoBehaviour {
 
     public int achievementMessageTime = 3;
 
+    private bool achvmtMsgActive = false;
+
+    private Queue<Achievement> achvmtsToShow;
+
     private void Awake() {
         if (instance == null) {
             instance = this;
@@ -41,6 +45,7 @@ public class HudView : MonoBehaviour {
         PlayerMovementHandler.instance.onPlayerDie += ShowEnding;
         mainMenuFireRecord.text = DataHandler.instance.fireRecord.ToString();
         mainMenuDistanceRecord.text = DataHandler.instance.distanceRecord.ToString();
+        achvmtsToShow = new Queue<Achievement>();
     }
 
     private void HideMenus() {
@@ -75,10 +80,21 @@ public class HudView : MonoBehaviour {
     }
 
     public void ShowAchievement(Achievement achievement) {
-        StartCoroutine(ShowAchievementMessage(achievement));
+        achvmtsToShow.Enqueue(achievement);
+    }
+
+    public void Update() {
+        if (!achvmtMsgActive) {
+            if (achvmtsToShow.Count > 0) {
+                Achievement ach = achvmtsToShow.Dequeue();
+                achvmtMsgActive = true;
+                StartCoroutine(ShowAchievementMessage(ach));
+            }
+        }
     }
 
     IEnumerator ShowAchievementMessage(Achievement achievement) {
+        AudioHandler.instance.Play("Bell");
         achievementTitle.GetComponent<TextMeshProUGUI>().text = LocalizationSystem.GetLocalizedValue(achievement.achievementTitle);
         achievementTitle.SetActive(true);
         achievementDescription.GetComponent<TextMeshProUGUI>().text = LocalizationSystem.GetLocalizedValue(achievement.achievmentDescription);
@@ -88,6 +104,7 @@ public class HudView : MonoBehaviour {
         achievementTitle.SetActive(false);
         achievementDescription.SetActive(false);
         achievementBackground.SetActive(false);
+        achvmtMsgActive = false;
     }
 
     private void OnDestroy() {

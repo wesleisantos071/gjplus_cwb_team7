@@ -23,6 +23,8 @@ public class DataHandler : MonoBehaviour {
     public LocalizationSystem.Language selectedLanguage;
     string KEY_ACHIEVEMENT_FIRE_INDEX = "AchievementFireIndex";
     public int fireAchievementIndex = 0;
+    string KEY_ACHIEVEMENT_DISTANCE_INDEX = "AchievementDistanceIndex";
+    public int distanceAchievementIndex = 0;
 
     public Action onResetHighScores;
 
@@ -63,6 +65,9 @@ public class DataHandler : MonoBehaviour {
         if (PlayerPrefs.HasKey(KEY_ACHIEVEMENT_FIRE_INDEX)) {
             fireAchievementIndex = PlayerPrefs.GetInt(KEY_ACHIEVEMENT_FIRE_INDEX);
         }
+        if (PlayerPrefs.HasKey(KEY_ACHIEVEMENT_DISTANCE_INDEX)) {
+            distanceAchievementIndex = PlayerPrefs.GetInt(KEY_ACHIEVEMENT_DISTANCE_INDEX);
+        }
     }
 
     private void Save() {
@@ -73,10 +78,16 @@ public class DataHandler : MonoBehaviour {
         PlayerPrefs.SetInt(KEY_MUSIC, musicEnabled ? 1 : 0);
         PlayerPrefs.SetInt(KEY_SOUND, soundEnabled ? 1 : 0);
         PlayerPrefs.SetInt(KEY_ACHIEVEMENT_FIRE_INDEX, fireAchievementIndex);
+        PlayerPrefs.SetInt(KEY_ACHIEVEMENT_DISTANCE_INDEX, distanceAchievementIndex);
     }
 
     internal void SetFireAchievementIndex(int newVal) {
         fireAchievementIndex = newVal;
+        Save();
+    }
+
+    internal void SetDistanceAchievementIndex(int newVal) {
+        distanceAchievementIndex = newVal;
         Save();
     }
 
@@ -106,6 +117,7 @@ public class DataHandler : MonoBehaviour {
     public void ResetHighScores() {
         fireRecord = 0;
         fireAchievementIndex = 0;
+        distanceAchievementIndex = 0;
         distanceRecord = 0;
         playerCash = 0;
         Save();

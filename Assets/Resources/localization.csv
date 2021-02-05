@@ -10,6 +10,7 @@ _credits,CREDITS,CREDITOS
 _author,Author,Autor
 _disclaimer_txt,This game was developed as a final project of the Unity Development course at Gamescola,Este jogo foi desenvolvido como projeto final do curso de Desenvolvimento de jogos em Unity na Gamescola
 _sfx,Sound Effects,Efeitos Sonóros
+_achievements,Achievements,Conquistas
 _art,Art,Arte
 _ach_t_f-5_1,Soldier,Soldado
 _ach_d_f-5_1,Put out 5 fires,Apague 5 fogos
@@ -31,3 +32,11 @@ _ach_t_f-320_9,Colonel,Coronel
 _ach_d_f-320_9,Put out 320 fires,Apague 320 fogos
 _ach_t_f-500_10,General,General
 _ach_d_f-500_10,Put out 500 fires,Apague 500 fogos
+_ach_t_i-5_1,General,General
+_ach_d_i-5_1,Put out 500 fires,Apague 500 fogos
+_ach_t_d-1_1,Hurry,Apressado
+_ach_d_d-1_1,Run 50m,Corra 50m
+_ach_t_d-2_1,Athlete,Atleta
+_ach_d_d-2_1,Run 150m,Corra 150m
+_ach_t_d-3_1,Champion,Campeão
+_ach_d_d-3_1,Run 300m,Corra 300m
