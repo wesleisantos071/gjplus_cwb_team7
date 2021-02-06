@@ -62,20 +62,20 @@ public class AchievementsController : MonoBehaviour {
         }
         fireAchievementIndex = dataHandler.fireAchievementIndex;
         distanceAchievementIndex = dataHandler.distanceAchievementIndex;
-        Debug.Log("Achievements loaded");
+        //Debug.Log("Achievements loaded");
     }
 
     void ResetAchievementIndexes() {
-        Debug.Log("Reseting achievements");
+        //Debug.Log("Reseting achievements");
         fireAchievementIndex = 0;
         distanceAchievementIndex = 0;
     }
 
     private void CheckFireAchievements(int currentFire) {
-        Debug.Log("fireachindex:" + fireAchievementIndex);
+        //Debug.Log("fireachindex:" + fireAchievementIndex);
         FireExtinctAchievement achievement = fireAchievements[fireAchievementIndex];
         bool achievementReached = currentFire == achievement.targetCount;
-        Debug.Log("[" + fireAchievementIndex + "]Checking fire achievement " + currentFire + " / " + achievement.targetCount);
+        //Debug.Log("[" + fireAchievementIndex + "]Checking fire achievement " + currentFire + " / " + achievement.targetCount);
         if (achievementReached) {
             onReachAchievement?.Invoke(achievement);
             if (fireAchievementIndex < fireAchievements.Count - 1) {
@@ -86,10 +86,10 @@ public class AchievementsController : MonoBehaviour {
     }
 
     private void CheckDistanceAchievements(int currentDistance) {
-        Debug.Log("DistAchCount:" + distanceAchievements.Count + " index:" + distanceAchievementIndex);
+        //Debug.Log("DistAchCount:" + distanceAchievements.Count + " index:" + distanceAchievementIndex);
         DistanceAchievement achievement = distanceAchievements[distanceAchievementIndex];
         bool achievementReached = currentDistance == achievement.targetCount;
-        Debug.Log("[" + distanceAchievementIndex + "]Checking distance achievement " + currentDistance + " / " + achievement.targetCount);
+        // Debug.Log("[" + distanceAchievementIndex + "]Checking distance achievement " + currentDistance + " / " + achievement.targetCount);
         if (achievementReached) {
             onReachAchievement?.Invoke(achievement);
             if (distanceAchievementIndex < distanceAchievements.Count - 1) {

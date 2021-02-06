@@ -34,9 +34,9 @@ _ach_t_f-500_10,General,General
 _ach_d_f-500_10,Put out 500 fires,Apague 500 fogos
 _ach_t_i-5_1,General,General
 _ach_d_i-5_1,Put out 500 fires,Apague 500 fogos
-_ach_t_d-1_1,Hurry,Apressado
-_ach_d_d-1_1,Run 50m,Corra 50m
-_ach_t_d-2_1,Athlete,Atleta
-_ach_d_d-2_1,Run 150m,Corra 150m
-_ach_t_d-3_1,Champion,Campeão
-_ach_d_d-3_1,Run 300m,Corra 300m
+_ach_t_d-50_1,Hurry,Apressado
+_ach_d_d-50_1,Run 50m,Corra 50m
+_ach_t_d-300_1,Athlete,Atleta
+_ach_d_d-300_1,Run 150m,Corra 150m
+_ach_t_d-600_1,Champion,Campeão
+_ach_d_d-600_1,Run 300m,Corra 300m
