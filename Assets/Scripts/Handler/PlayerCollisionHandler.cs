@@ -38,7 +38,7 @@ public class PlayerCollisionHandler : MonoBehaviour {
 
     private void OnCollisionEnter(Collision other) {
         Rigidbody rb = GetComponent<Rigidbody>();
-        if (rb.velocity.y < 0 && other.gameObject.CompareTag("Floor")) {
+        if (rb.linearVelocity.y < 0 && other.gameObject.CompareTag("Floor")) {
             onHitFloor?.Invoke();
         }
     }

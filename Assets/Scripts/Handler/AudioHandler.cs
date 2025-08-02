@@ -115,12 +115,14 @@ public class AudioHandler : MonoBehaviour {
     internal void ResumeMusic() {
         if (instance.currentMusic != null) {
             instance.currentMusic.Play();
+            instance.currentBackground.Play();
         }
     }
 
     internal void StopMusic() {
         if (instance.currentMusic != null) {
             instance.currentMusic.Stop();
+            instance.currentBackground.Stop();
         }
     }
     public void PlayWaterJet() {
