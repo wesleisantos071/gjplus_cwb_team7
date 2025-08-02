@@ -30,7 +30,7 @@ public class ObjectPoolHandler : MonoBehaviour {
     }
 
     public void ResetPool() {
-        //Debug.Log("Reseting pool...");
+        Debug.Log("Reseting pool...");
         GameObject[] platformsInPool = GameObject.FindGameObjectsWithTag("PlatformInPool");
         int max = platformsInPool.Length;
         for (int i = 0; i < max; i++) {
@@ -62,11 +62,11 @@ public class ObjectPoolHandler : MonoBehaviour {
                 go.transform.position = pos;
                 go.transform.rotation = rotation;
                 poolDictionary[tag].Enqueue(go);
-                //Debug.Log("Returning platform:" + go.name);
+                Debug.Log("Returning platform:" + go.name);
                 return go;
             } else {
                 poolDictionary[tag].Enqueue(go);
-                //Debug.Log("Returning null");
+                Debug.Log("Returning null");
                 return null;
             }
 
